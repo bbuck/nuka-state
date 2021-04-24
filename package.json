@@ -53,6 +53,7 @@
 	},
 	"lint-staged": {
 		"src/**/*.ts": [
+			"[[ 0 -eq 1 ]]",
 			"eslint --fix",
 			"tsc -p tsconfig.json --noEmit",
 			"git add"

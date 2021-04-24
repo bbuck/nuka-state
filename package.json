@@ -7,7 +7,7 @@
 		"test": "jest",
 		"compile": "tsc",
 		"docs": "typedoc --out docs src/index.ts",
-		"run-pre-commit": "lint-staged",
+		"run-pre-commit": "tsc --noEmit && lint-staged",
 		"postinstall": "husky install"
 	},
 	"repository": {
@@ -48,8 +48,7 @@
 	},
 	"lint-staged": {
 		"src/**/*.ts": [
-			"eslint --fix",
-			"tsc -p tsconfig.json --noEmit"
+			"eslint --fix"
 		]
 	}
 }

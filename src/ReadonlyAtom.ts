@@ -42,7 +42,7 @@ export type ReadonlyAtomSetter<T> = (value: T) => void;
  * user or something that would require a network request for fresh data.
  * @typeparam T The type of the atom's value.
  */
-export type ReadonlyAtomStarter<T> = (set: ReadonlyAtomSetter<T>) => (VoidFunction | undefined);
+export type ReadonlyAtomStarter<T> = (set: ReadonlyAtomSetter<T>) => VoidFunction | undefined;
 
 /**
  * ReadonlyAtom is a specialized atom that does not provide any public method
@@ -107,7 +107,7 @@ export type ReadonlyAtomStarter<T> = (set: ReadonlyAtomSetter<T>) => (VoidFuncti
  * running, it's better to try and work in using the subscribe functions for the
  * lifetime you use the atom instead of having it constatly live.
  * @typeparam T The type of the atom's value.
- * @internalDoNotUse Prefer [[readonlyAtom]] to manually creating instances of
+ * @internal Prefer [[readonlyAtom]] to manually creating instances of
  *   this class.
  */
 export default class ReadonlyAtom<T> extends BaseAtom<T> {
@@ -130,7 +130,7 @@ export default class ReadonlyAtom<T> extends BaseAtom<T> {
 	 * last subscriber has stopped.
 	 * @param isLive Whether or not to mark this atom as live or not.
 	 */
-	setLive(isLive: boolean) {
+	setLive(isLive: boolean): void {
 		if (this.#live === isLive) {
 			return;
 		}
@@ -156,7 +156,7 @@ export default class ReadonlyAtom<T> extends BaseAtom<T> {
 	 * @param subscriber The subscribe function that will be called when the value
 	 *   of this atom is mutated.
 	 */
-	subscribe(subscriber: AtomSubscriber<this>) {
+	subscribe(subscriber: AtomSubscriber<this>): void {
 		// there is no reason to subscribe if we don't have a start function (so
 		// no changes happening at all)
 		if (!this.#start) {
@@ -180,7 +180,7 @@ export default class ReadonlyAtom<T> extends BaseAtom<T> {
 	 * @param subscriber The function that was passed to the subscribe method and
 	 *   that should be removed from the list of subscribers.
 	 */
-	unsubscribe(subscriber: AtomSubscriber<this>) {
+	unsubscribe(subscriber: AtomSubscriber<this> | null): void {
 		// without a start function, we don't track subscribers so we have nothing
 		// to unsubscribe
 		if (!this.#start) {
@@ -194,9 +194,12 @@ export default class ReadonlyAtom<T> extends BaseAtom<T> {
 		}
 	}
 
-	// The `set` function that will be passed to the start function and is bound
-	// to this instance of ReadonlyAtom. This takes the new value for the atom
-	// and updates the underlying atom's value.
+	/**
+	 * This is the `set` function passed to the start function provided to a
+	 * ReadonlyAtom. It receives the next intended value of the atom and notifies
+	 * all subscribers of the change.
+	 * @param value The new value of the atom.
+	 */
 	private setter = (value: T) => {
 		this.setValue(value);
 		this.notifySubscribers();

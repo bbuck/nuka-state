@@ -49,8 +49,7 @@
 	"lint-staged": {
 		"src/**/*.ts": [
 			"eslint --fix",
-			"tsc -p tsconfig.json --noEmit",
-			"git add"
+			"tsc -p tsconfig.json --noEmit"
 		]
 	}
 }

@@ -1,0 +1,679 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>ReadonlyAtom | @nuka/state</title>
+	<meta name="description" content="Documentation for @nuka/state">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../assets/css/main.css">
+	<script async src="../assets/js/search.js" id="search-script"></script>
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="../assets/js/search.json" data-base="..">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="../index.html" class="title">@nuka/state</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="../modules.html">@nuka/state</a>
+				</li>
+				<li>
+					<a href="readonlyatom.html">ReadonlyAtom</a>
+				</li>
+			</ul>
+			<h1>Class ReadonlyAtom&lt;T&gt;</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>ReadonlyAtom is a specialized atom that does not provide any public method
+							for setting their values. This means they do not have an <code>update</code> or <code>set</code>
+							function that can be called by other code and can only be read via <code>value</code>;
+							however, this does not mean that their value cannot be modified after they
+						are created.</p>
+					</div>
+					<p>There are two ways to use ReadonlyAtom&#39;s, the first of which is as a normal
+						atom with a value that will never change. You can do this by using the
+					<a href="../modules.html#readonlyatom">readonlyAtom</a> function and passing in just it&#39;s first argument:</p>
+					<pre><code class="language-typescript"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">ten</span><span style="color: #000000"> = </span><span style="color: #795E26">readonlyAtom</span><span style="color: #000000">(</span><span style="color: #098658">10</span><span style="color: #000000">);</span>
+</code></pre>
+					<p>In this example <code>ten</code> will always hold the value <code>10</code>, since we did not pass
+						a start function that would receive the setter we can be assured that it&#39;s
+						value is static for the lifetime of the atom. While it is still possible to
+						subscribe to these static atoms, they are essentially no-op, since there
+						would be no way for the atom&#39;s value to change subscribe requests are
+					ignored.</p>
+					<p>The other, and maybe more useful, method of using a ReadonlyAtom is one that
+						receives a start function in addition to the intitial value that allows it&#39;s
+						value to be updated in response to something. These kinds of ReadonlyAtoms
+						are created by providing a start function as the second argument to
+					<a href="../modules.html#readonlyatom">readonlyAtom</a>, a smiple example would be an atom that acts like a clock:</p>
+					<pre><code class="language-typescript"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">clock</span><span style="color: #000000"> = </span><span style="color: #795E26">readonlyAtom</span><span style="color: #000000">(</span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #267F99">Date</span><span style="color: #000000">(), </span><span style="color: #001080">set</span><span style="color: #000000"> </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  </span><span style="color: #795E26">set</span><span style="color: #000000">(</span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #267F99">Date</span><span style="color: #000000">());</span>
+
+<span style="color: #000000">  </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">interval</span><span style="color: #000000"> = </span><span style="color: #795E26">setInterval</span><span style="color: #000000">(() </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #795E26">set</span><span style="color: #000000">(</span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #267F99">Date</span><span style="color: #000000">());</span>
+<span style="color: #000000">  }, </span><span style="color: #098658">1000</span><span style="color: #000000">);</span>
+
+<span style="color: #000000">  </span><span style="color: #AF00DB">return</span><span style="color: #000000"> () </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #795E26">clearInterval</span><span style="color: #000000">(</span><span style="color: #001080">interval</span><span style="color: #000000">);</span>
+<span style="color: #000000">  };</span>
+<span style="color: #000000">});</span>
+</code></pre>
+					<p>In the above example we create a ReadonlyAtom that will have it&#39;s value
+						updated ever second via an interval. We do this by passing in a start
+						function which receives one argument, <code>set</code> which lets you set the value of
+						the atom and should return a stop function to clean up any intervals or
+					timeouts or anything else that should be stopped.</p>
+					<p>Since the value will change we can subscribe to listen for the value updates
+						like any other atom. And subscription is key for these atoms. For efficiency
+						sake the start function will not be called until there is at least one
+						subscriber on the atom and it will be halted when the last subscriber
+						unsubscribes. This is why you would typically want to update the value at
+						the beginning of your start function so that subscribers can read and use
+					the latest values.</p>
+					<p>If you do need your readonly atom to run even without subscribers you can
+						use <code>setLive</code> to switch it to a live atom which means that it will call the
+						start function and will not call stop regardless of how many subscribers it
+						has. This should be used sparingly because any resources will be constantly
+						running, it&#39;s better to try and work in using the subscribe functions for the
+					lifetime you use the atom instead of having it constatly live.</p>
+					<dl class="tsd-comment-tags">
+						<dt>internal</dt>
+						<dd><p>Prefer <a href="../modules.html#readonlyatom">readonlyAtom</a> to manually creating instances of
+							this class.</p>
+						</dd>
+					</dl>
+				</div>
+			</section>
+			<section class="tsd-panel tsd-type-parameters">
+				<h3>Type parameters</h3>
+				<ul class="tsd-type-parameters">
+					<li>
+						<h4>T</h4>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>The type of the atom&#39;s value.</p>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-hierarchy">
+				<h3>Hierarchy</h3>
+				<ul class="tsd-hierarchy">
+					<li>
+						<a href="baseatom.html" class="tsd-signature-type" data-tsd-kind="Class">BaseAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>
+						<ul class="tsd-hierarchy">
+							<li>
+								<span class="target">ReadonlyAtom</span>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel-group tsd-index-group">
+				<h2>Index</h2>
+				<section class="tsd-panel tsd-index-panel">
+					<div class="tsd-index-content">
+						<section class="tsd-index-section ">
+							<h3>Constructors</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-constructor tsd-parent-kind-class tsd-has-type-parameter tsd-is-overwrite"><a href="readonlyatom.html#constructor" class="tsd-kind-icon">constructor</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section tsd-is-private tsd-is-private-protected">
+							<h3>Properties</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="readonlyatom.html#_live" class="tsd-kind-icon">#live</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="readonlyatom.html#_start" class="tsd-kind-icon">#start</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="readonlyatom.html#_stop" class="tsd-kind-icon">#stop</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-private"><a href="readonlyatom.html#_subscribers" class="tsd-kind-icon">#subscribers</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-private"><a href="readonlyatom.html#_value" class="tsd-kind-icon">#value</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Accessors</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited"><a href="readonlyatom.html#value" class="tsd-kind-icon">value</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Methods</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="readonlyatom.html#hassubscribers" class="tsd-kind-icon">has<wbr>Subscribers</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="readonlyatom.html#notifysubscribers" class="tsd-kind-icon">notify<wbr>Subscribers</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="readonlyatom.html#setlive" class="tsd-kind-icon">set<wbr>Live</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="readonlyatom.html#setvalue" class="tsd-kind-icon">set<wbr>Value</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="readonlyatom.html#setter" class="tsd-kind-icon">setter</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="readonlyatom.html#subscribe" class="tsd-kind-icon">subscribe</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="readonlyatom.html#unsubscribe" class="tsd-kind-icon">unsubscribe</a></li>
+							</ul>
+						</section>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Constructors</h2>
+				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class tsd-has-type-parameter tsd-is-overwrite">
+					<a name="constructor" class="tsd-anchor"></a>
+					<h3>constructor</h3>
+					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-has-type-parameter tsd-is-overwrite">
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Readonly<wbr>Atom&lt;T&gt;<span class="tsd-signature-symbol">(</span>initialValue<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span>, start<span class="tsd-signature-symbol">?: </span><a href="../modules.html#readonlyatomstarter" class="tsd-signature-type" data-tsd-kind="Type alias">ReadonlyAtomStarter</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="readonlyatom.html" class="tsd-signature-type" data-tsd-kind="Class">ReadonlyAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Overrides <a href="baseatom.html">BaseAtom</a>.<a href="baseatom.html#constructor">constructor</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/1050347/src/ReadonlyAtom.ts#L116">ReadonlyAtom.ts:116</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>T</h4>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>initialValue: <span class="tsd-signature-type">T</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> start: <a href="../modules.html#readonlyatomstarter" class="tsd-signature-type" data-tsd-kind="Type alias">ReadonlyAtomStarter</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="readonlyatom.html" class="tsd-signature-type" data-tsd-kind="Class">ReadonlyAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group tsd-is-private tsd-is-private-protected">
+				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="_live" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> #live</h3>
+					<div class="tsd-signature tsd-kind-icon">#live<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/1050347/src/ReadonlyAtom.ts#L116">ReadonlyAtom.ts:116</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="_start" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> #start</h3>
+					<div class="tsd-signature tsd-kind-icon">#start<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><a href="../modules.html#readonlyatomstarter" class="tsd-signature-type" data-tsd-kind="Type alias">ReadonlyAtomStarter</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/1050347/src/ReadonlyAtom.ts#L114">ReadonlyAtom.ts:114</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="_stop" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> #stop</h3>
+					<div class="tsd-signature tsd-kind-icon">#stop<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">VoidFunction</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/1050347/src/ReadonlyAtom.ts#L115">ReadonlyAtom.ts:115</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-private">
+					<a name="_subscribers" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> #subscribers</h3>
+					<div class="tsd-signature tsd-kind-icon">#subscribers<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">AtomSubscriber</span><span class="tsd-signature-symbol">&lt;</span><a href="readonlyatom.html" class="tsd-signature-type" data-tsd-kind="Class">ReadonlyAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="baseatom.html">BaseAtom</a>.<a href="baseatom.html#_subscribers">#subscribers</a></p>
+						<ul>
+							<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/1050347/src/BaseAtom.ts#L32">BaseAtom.ts:32</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The list of active subscribers listening or value changes on this atom.
+							Subscribers are called anytime the value is updated.</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>typeparam</dt>
+							<dd><p>The specific class that was subscribed to.</p>
+							</dd>
+						</dl>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-private">
+					<a name="_value" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> #value</h3>
+					<div class="tsd-signature tsd-kind-icon">#value<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">T</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="baseatom.html">BaseAtom</a>.<a href="baseatom.html#_value">#value</a></p>
+						<ul>
+							<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/1050347/src/BaseAtom.ts#L25">BaseAtom.ts:25</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The value of the atom, BaseAtom does not provide any means for updating
+							this after the object is created.</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>typeparam</dt>
+							<dd><p>Teh atom&#39;s value.</p>
+							</dd>
+						</dl>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Accessors</h2>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited">
+					<a name="value" class="tsd-anchor"></a>
+					<h3>value</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> value<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/1050347/src/BaseAtom.ts#L43">BaseAtom.ts:43</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>This readonly property will return the current active value of the atom.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span></h4>
+							<p>The current value of the atom.</p>
+						</li>
+					</ul>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+					<a name="hassubscribers" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> has<wbr>Subscribers</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+						<li class="tsd-signature tsd-kind-icon">has<wbr>Subscribers<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="baseatom.html">BaseAtom</a>.<a href="baseatom.html#hassubscribers">hasSubscribers</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/1050347/src/BaseAtom.ts#L83">BaseAtom.ts:83</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>An internal test that determines if any subscribers are currently
+									subscribed to this atom&#39;s value changes.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+							<p>A boolean representing if there are any subscribers currently
+							subscribed to this atom.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+					<a name="notifysubscribers" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> notify<wbr>Subscribers</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+						<li class="tsd-signature tsd-kind-icon">notify<wbr>Subscribers<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="baseatom.html">BaseAtom</a>.<a href="baseatom.html#notifysubscribers">notifySubscribers</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/1050347/src/BaseAtom.ts#L91">BaseAtom.ts:91</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>An internal helper that will fire all the subscribers passing <code>this</code> to
+									them, this is typically only triggered in response to value changes.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="setlive" class="tsd-anchor"></a>
+					<h3>set<wbr>Live</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Live<span class="tsd-signature-symbol">(</span>isLive<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/1050347/src/ReadonlyAtom.ts#L133">ReadonlyAtom.ts:133</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>This method allows you to mark the atom as live, or not live, which provides
+										some additional controls on the how the ReadonlyAtom behaves. If the atom
+										is marked as live then it will run as if there is always at least one
+										subscriber and if it&#39;s then marked as no longer live it will stop as if the
+									last subscriber has stopped.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>isLive: <span class="tsd-signature-type">boolean</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Whether or not to mark this atom as live or not.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+					<a name="setvalue" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> set<wbr>Value</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Value<span class="tsd-signature-symbol">(</span>newValue<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="baseatom.html">BaseAtom</a>.<a href="baseatom.html#setvalue">setValue</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/1050347/src/BaseAtom.ts#L101">BaseAtom.ts:101</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>An internal helper that will update the value of the atom. Note that it&#39;s
+										protected, there is no public way to modify a BaseAtom&#39;s value this is
+									for subclasses to used.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>newValue: <span class="tsd-signature-type">T</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The new value for the atom&#39;s value field.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
+					<a name="setter" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> setter</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
+						<li class="tsd-signature tsd-kind-icon">setter<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/1050347/src/ReadonlyAtom.ts#L203">ReadonlyAtom.ts:203</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>This is the <code>set</code> function passed to the start function provided to a
+										ReadonlyAtom. It receives the next intended value of the atom and notifies
+									all subscribers of the change.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>value: <span class="tsd-signature-type">T</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The new value of the atom.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+					<a name="subscribe" class="tsd-anchor"></a>
+					<h3>subscribe</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+						<li class="tsd-signature tsd-kind-icon">subscribe<span class="tsd-signature-symbol">(</span>subscriber<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">AtomSubscriber</span><span class="tsd-signature-symbol">&lt;</span><a href="readonlyatom.html" class="tsd-signature-type" data-tsd-kind="Class">ReadonlyAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Overrides <a href="baseatom.html">BaseAtom</a>.<a href="baseatom.html#subscribe">subscribe</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/1050347/src/ReadonlyAtom.ts#L159">ReadonlyAtom.ts:159</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>For the most part, this behaves like <a href="baseatom.html">BaseAtom</a>&#39;s subscribe function;
+										however, the difference is that if this ReadonlyAtom is not live and has
+										no subscribers this will also call the provided start function (if
+										provided). If there is no start function provided to the ReadonlyAtom then
+										this basically becomes a no-op function since there would be no changes to
+									respond to.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>subscriber: <span class="tsd-signature-type">AtomSubscriber</span><span class="tsd-signature-symbol">&lt;</span><a href="readonlyatom.html" class="tsd-signature-type" data-tsd-kind="Class">ReadonlyAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The subscribe function that will be called when the value
+										of this atom is mutated.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+					<a name="unsubscribe" class="tsd-anchor"></a>
+					<h3>unsubscribe</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+						<li class="tsd-signature tsd-kind-icon">unsubscribe<span class="tsd-signature-symbol">(</span>subscriber<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">AtomSubscriber</span><span class="tsd-signature-symbol">&lt;</span><a href="readonlyatom.html" class="tsd-signature-type" data-tsd-kind="Class">ReadonlyAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Overrides <a href="baseatom.html">BaseAtom</a>.<a href="baseatom.html#unsubscribe">unsubscribe</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/1050347/src/ReadonlyAtom.ts#L183">ReadonlyAtom.ts:183</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>For the most part, this behaves like <a href="baseatom.html">BaseAtom</a>&#39;s unsubscribe function;
+										however, the difference is that if this ReadonlyAtom is not live and the
+										last subscriber unsubscribes then we call the stop function retuned by the
+										provided start (if they both exist). If no start function is provided this
+										method will essentially become a no-op since we do not accept subscribers
+									in this situation as well.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>subscriber: <span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">AtomSubscriber</span><span class="tsd-signature-symbol">&lt;</span><a href="readonlyatom.html" class="tsd-signature-type" data-tsd-kind="Class">ReadonlyAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The function that was passed to the subscribe method and
+										that should be removed from the list of subscribers.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class=" ">
+						<a href="../modules.html">Exports</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+					<li class=" tsd-kind-class tsd-has-type-parameter">
+						<a href="baseatom.html" class="tsd-kind-icon">Base<wbr>Atom</a>
+					</li>
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-class tsd-has-type-parameter">
+						<a href="readonlyatom.html" class="tsd-kind-icon">Readonly<wbr>Atom</a>
+						<ul>
+							<li class=" tsd-kind-constructor tsd-parent-kind-class tsd-has-type-parameter tsd-is-overwrite">
+								<a href="readonlyatom.html#constructor" class="tsd-kind-icon">constructor</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="readonlyatom.html#_live" class="tsd-kind-icon">#live</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="readonlyatom.html#_start" class="tsd-kind-icon">#start</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="readonlyatom.html#_stop" class="tsd-kind-icon">#stop</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-private">
+								<a href="readonlyatom.html#_subscribers" class="tsd-kind-icon">#subscribers</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-private">
+								<a href="readonlyatom.html#_value" class="tsd-kind-icon">#value</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited">
+								<a href="readonlyatom.html#value" class="tsd-kind-icon">value</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+								<a href="readonlyatom.html#hassubscribers" class="tsd-kind-icon">has<wbr>Subscribers</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+								<a href="readonlyatom.html#notifysubscribers" class="tsd-kind-icon">notify<wbr>Subscribers</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="readonlyatom.html#setlive" class="tsd-kind-icon">set<wbr>Live</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+								<a href="readonlyatom.html#setvalue" class="tsd-kind-icon">set<wbr>Value</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
+								<a href="readonlyatom.html#setter" class="tsd-kind-icon">setter</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+								<a href="readonlyatom.html#subscribe" class="tsd-kind-icon">subscribe</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+								<a href="readonlyatom.html#unsubscribe" class="tsd-kind-icon">unsubscribe</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+				<ul class="after-current">
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
+						<a href="../interfaces/iatom.html" class="tsd-kind-icon">IAtom</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+						<a href="../modules.html#readonlyatomsetter" class="tsd-kind-icon">Readonly<wbr>Atom<wbr>Setter</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+						<a href="../modules.html#readonlyatomstarter" class="tsd-kind-icon">Readonly<wbr>Atom<wbr>Starter</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="../modules.html#atom" class="tsd-kind-icon">atom</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="../modules.html#readonlyatom" class="tsd-kind-icon">readonly<wbr>Atom</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected method</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

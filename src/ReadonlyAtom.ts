@@ -115,7 +115,7 @@ export default class ReadonlyAtom<T> extends BaseAtom<T> {
 	#stop: VoidFunction | undefined;
 	#live: boolean;
 
-	constructor(initialValue: T, start: ReadonlyAtomStarter<T> | undefined) {
+	constructor(initialValue: T, start?: ReadonlyAtomStarter<T>) {
 		super(initialValue);
 
 		this.#start = start;

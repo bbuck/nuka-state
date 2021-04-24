@@ -8,7 +8,7 @@
 		"compile": "tsc",
 		"docs": "typedoc --out docs src/index.ts",
 		"run-pre-commit": "lint-staged",
-		"prepare": "husky install"
+		"postinstall": "husky install"
 	},
 	"repository": {
 		"type": "git",
@@ -46,14 +46,8 @@
 		"typedoc": "^0.20.36",
 		"typescript": "^4.2.4"
 	},
-	"husky": {
-		"hooks": {
-			"pre-commit": "run-pre-commit"
-		}
-	},
 	"lint-staged": {
 		"src/**/*.ts": [
-			"[[ 0 -eq 1 ]]",
 			"eslint --fix",
 			"tsc -p tsconfig.json --noEmit",
 			"git add"

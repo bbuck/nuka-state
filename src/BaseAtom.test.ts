@@ -33,6 +33,7 @@ describe('BaseAtom', () => {
 		it('allows users to subscribe', () => {
 			const atom = new BaseAtom(10);
 
+			// eslint-disable-next-line @typescript-eslint/no-empty-function
 			expect(() => atom.subscribe(_atom => {})).not.toThrow();
 		});
 	});
@@ -41,6 +42,7 @@ describe('BaseAtom', () => {
 		it('allows users to unsubscribe', () => {
 			const atom = new BaseAtom(10);
 
+			// eslint-disable-next-line @typescript-eslint/no-empty-function
 			expect(() => atom.unsubscribe(_atom => {})).not.toThrow();
 		});
 	});

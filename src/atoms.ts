@@ -10,6 +10,7 @@ import Atom from './Atom';
  * @returns The ReadonlyAtom instance that can be used as readonly storage.
  * @typeparam T The type of the atom's value.
  */
-export const readonlyAtom = <T>(initialValue: T, start?: ReadonlyAtomStarter<T>): ReadonlyAtom<T> => new ReadonlyAtom(initialValue, start);
+export const readonlyAtom = <T>(initialValue: T, start?: ReadonlyAtomStarter<T>): ReadonlyAtom<T> =>
+	new ReadonlyAtom(initialValue, start);
 
 export const atom = <T>(value: T): Atom<T> => new Atom(value);

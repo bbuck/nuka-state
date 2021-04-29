@@ -66,6 +66,7 @@ export default class Atom<T> extends BaseAtom<T> {
 		if (typeof updater === 'function') {
 			const newValue = updater(this.value);
 			this.setValue(newValue);
+			this.notifySubscribers();
 		}
 
 		if (this.#updaterQueue.length > 0) {

@@ -37,14 +37,16 @@ const incrementButton = document.querySelector('#increment-button');
 incrementButton.addEventListener('click', () => counter.update(n => n + 1));
 ```
 
-TODO: Add a CodePen link with the above as a demo.
+[Try it out on CodePen!](https://codepen.io/bbuck/pen/yLgwBGL?editors=0010)
 
 ## Roadmap
 
 - [x] Project setup (mostly done, maybe some minor cleanup here and there)
 - [x] BaseAtom (base implementation for an atom)
 - [x] ReadonlyAtom (readonly atom implementation with dynamic update options)
-- [ ] Atom (mostly implemented, basic core library feature)
+- [x] Atom (mostly implemented, basic core library feature)
+- [ ] more documentation
+- [ ] more tests
 - [ ] Product (a combination of several atoms into a single atom-like structure)
 - [ ] Reactor (a atom-like wrapper around atoms that provide named actions for
       use.

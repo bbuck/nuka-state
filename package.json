@@ -1,6 +1,6 @@
 {
 	"name": "@nuka/state",
-	"version": "0.1.2",
+	"version": "0.1.3",
 	"description": "Atom-based state management solution.",
 	"main": "dist/index.js",
 	"scripts": {
@@ -9,7 +9,8 @@
 		"docs": "typedoc --out docs src/index.ts",
 		"run-pre-commit": "tsc --noEmit && lint-staged",
 		"postinstall": "husky install",
-		"prepublishOnly": "tsc"
+		"prepublishOnly": "tsc",
+		"postpublish": "rm -rf dist/"
 	},
 	"repository": {
 		"type": "git",

@@ -1,4 +1,4 @@
-import { AtomSubscriber } from "./BaseAtom";
+import { AtomSubscriber } from './BaseAtom';
 
 /**
  * IAtom is an interface that will match the basic intended behavior of any atoms

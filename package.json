@@ -9,7 +9,7 @@
 		"docs": "typedoc --out docs src/index.ts",
 		"run-pre-commit": "tsc --noEmit && lint-staged",
 		"postinstall": "husky install",
-		"prepublish": "tsc"
+		"prepublishOnly": "tsc"
 	},
 	"repository": {
 		"type": "git",

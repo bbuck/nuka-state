@@ -1,5 +1,7 @@
 import ReadonlyAtom, { ReadonlyAtomStarter } from './ReadonlyAtom';
 import Atom from './Atom';
+import { IAtom } from './types';
+import Projector, { ProjectionFunction } from './Projector';
 
 /**
  * readonlyAtom will create a new ReadonlyAtom instance with the provided
@@ -93,3 +95,195 @@ export const readonlyAtom = <T>(initialValue: T, start?: ReadonlyAtomStarter<T>)
  * @typeparam T The type of the atom's value.
  */
 export const atom = <T>(value: T): Atom<T> => new Atom(value);
+
+interface ProjectorCreator {
+	<T, A1>(atom1: IAtom<A1>, projection: (a1: Readonly<A1>) => T): Projector<T>;
+	<T, A1, A2>(atom1: IAtom<A1>, atom2: IAtom<A2>, projection: (a1: Readonly<A1>, a2: Readonly<A2>) => T): Projector<T>;
+	<T, A1, A2, A3>(
+		atom1: IAtom<A1>,
+		atom2: IAtom<A2>,
+		atom3: IAtom<A3>,
+		projection: (a1: Readonly<A1>, a2: Readonly<A2>, a3: Readonly<A3>) => T,
+	): Projector<T>;
+	<T, A1, A2, A3, A4>(
+		atom1: IAtom<A1>,
+		atom2: IAtom<A2>,
+		atom3: IAtom<A3>,
+		atom4: IAtom<A4>,
+		projection: (a1: Readonly<A1>, a2: Readonly<A2>, a3: Readonly<A3>, a4: Readonly<A4>) => T,
+	): Projector<T>;
+	<T, A1, A2, A3, A4, A5>(
+		atom1: IAtom<A1>,
+		atom2: IAtom<A2>,
+		atom3: IAtom<A3>,
+		atom4: IAtom<A4>,
+		atom5: IAtom<A5>,
+		projection: (a1: Readonly<A1>, a2: Readonly<A2>, a3: Readonly<A3>, a4: Readonly<A4>, a5: Readonly<A5>) => T,
+	): Projector<T>;
+	<T, A1, A2, A3, A4, A5, A6>(
+		atom1: IAtom<A1>,
+		atom2: IAtom<A2>,
+		atom3: IAtom<A3>,
+		atom4: IAtom<A4>,
+		atom5: IAtom<A5>,
+		atom6: IAtom<A6>,
+		projection: (
+			a1: Readonly<A1>,
+			a2: Readonly<A2>,
+			a3: Readonly<A3>,
+			a4: Readonly<A4>,
+			a5: Readonly<A5>,
+			a6: Readonly<A6>,
+		) => T,
+	): Projector<T>;
+	<T, A1, A2, A3, A4, A5, A6, A7>(
+		atom1: IAtom<A1>,
+		atom2: IAtom<A2>,
+		atom3: IAtom<A3>,
+		atom4: IAtom<A4>,
+		atom5: IAtom<A5>,
+		atom6: IAtom<A6>,
+		atom7: IAtom<A7>,
+		projection: (
+			a1: Readonly<A1>,
+			a2: Readonly<A2>,
+			a3: Readonly<A3>,
+			a4: Readonly<A4>,
+			a5: Readonly<A5>,
+			a6: Readonly<A6>,
+			a7: Readonly<A7>,
+		) => T,
+	): Projector<T>;
+	<T, A1, A2, A3, A4, A5, A6, A7, A8>(
+		atom1: IAtom<A1>,
+		atom2: IAtom<A2>,
+		atom3: IAtom<A3>,
+		atom4: IAtom<A4>,
+		atom5: IAtom<A5>,
+		atom6: IAtom<A6>,
+		atom7: IAtom<A7>,
+		atom8: IAtom<A8>,
+		projection: (
+			a1: Readonly<A1>,
+			a2: Readonly<A2>,
+			a3: Readonly<A3>,
+			a4: Readonly<A4>,
+			a5: Readonly<A5>,
+			a6: Readonly<A6>,
+			a7: Readonly<A7>,
+			a8: Readonly<A8>,
+		) => T,
+	): Projector<T>;
+	<T, A1, A2, A3, A4, A5, A6, A7, A8, A9>(
+		atom1: IAtom<A1>,
+		atom2: IAtom<A2>,
+		atom3: IAtom<A3>,
+		atom4: IAtom<A4>,
+		atom5: IAtom<A5>,
+		atom6: IAtom<A6>,
+		atom7: IAtom<A7>,
+		atom8: IAtom<A8>,
+		atom9: IAtom<A9>,
+		projection: (
+			a1: Readonly<A1>,
+			a2: Readonly<A2>,
+			a3: Readonly<A3>,
+			a4: Readonly<A4>,
+			a5: Readonly<A5>,
+			a6: Readonly<A6>,
+			a7: Readonly<A7>,
+			a8: Readonly<A8>,
+			a9: Readonly<A9>,
+		) => T,
+	): Projector<T>;
+	<T, A1, A2, A3, A4, A5, A6, A7, A8, A9, A10>(
+		atom1: IAtom<A1>,
+		atom2: IAtom<A2>,
+		atom3: IAtom<A3>,
+		atom4: IAtom<A4>,
+		atom5: IAtom<A5>,
+		atom6: IAtom<A6>,
+		atom7: IAtom<A7>,
+		atom8: IAtom<A8>,
+		atom9: IAtom<A9>,
+		atom10: IAtom<A10>,
+		projection: (
+			a1: Readonly<A1>,
+			a2: Readonly<A2>,
+			a3: Readonly<A3>,
+			a4: Readonly<A4>,
+			a5: Readonly<A5>,
+			a6: Readonly<A6>,
+			a7: Readonly<A7>,
+			a8: Readonly<A8>,
+			a9: Readonly<A9>,
+			a10: Readonly<A10>,
+		) => T,
+	): Projector<T>;
+	<T, A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11>(
+		atom1: IAtom<A1>,
+		atom2: IAtom<A2>,
+		atom3: IAtom<A3>,
+		atom4: IAtom<A4>,
+		atom5: IAtom<A5>,
+		atom6: IAtom<A6>,
+		atom7: IAtom<A7>,
+		atom8: IAtom<A8>,
+		atom9: IAtom<A9>,
+		atom10: IAtom<A10>,
+		atom11: IAtom<A11>,
+		projection: (
+			a1: Readonly<A1>,
+			a2: Readonly<A2>,
+			a3: Readonly<A3>,
+			a4: Readonly<A4>,
+			a5: Readonly<A5>,
+			a6: Readonly<A6>,
+			a7: Readonly<A7>,
+			a8: Readonly<A8>,
+			a9: Readonly<A9>,
+			a10: Readonly<A10>,
+			a11: Readonly<A11>,
+		) => T,
+	): Projector<T>;
+	<T, A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11, A12>(
+		atom1: IAtom<A1>,
+		atom2: IAtom<A2>,
+		atom3: IAtom<A3>,
+		atom4: IAtom<A4>,
+		atom5: IAtom<A5>,
+		atom6: IAtom<A6>,
+		atom7: IAtom<A7>,
+		atom8: IAtom<A8>,
+		atom9: IAtom<A9>,
+		atom10: IAtom<A10>,
+		atom11: IAtom<A11>,
+		atom12: IAtom<A12>,
+		projection: (
+			a1: Readonly<A1>,
+			a2: Readonly<A2>,
+			a3: Readonly<A3>,
+			a4: Readonly<A4>,
+			a5: Readonly<A5>,
+			a6: Readonly<A6>,
+			a7: Readonly<A7>,
+			a8: Readonly<A8>,
+			a9: Readonly<A9>,
+			a10: Readonly<A10>,
+			a11: Readonly<A11>,
+			a12: Readonly<A12>,
+		) => T,
+	): Projector<T>;
+}
+
+export const projector: ProjectorCreator = <T>(...args: unknown[]): Projector<T> => {
+	const projection = args[args.length - 1] as ProjectionFunction<T>;
+	const atoms: IAtom<unknown>[] = [];
+	args.forEach((arg, index) => {
+		if (index !== args.length - 1) {
+			atoms.push(arg as IAtom<unknown>);
+		}
+	});
+
+	return new Projector(atoms, projection);
+};

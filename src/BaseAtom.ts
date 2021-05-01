@@ -16,7 +16,7 @@ export interface AtomSubscriber<T> {
  * @internal **DO NOT USE** This is a base class for other atoms, prefer
  *   [[readonlyAtom]] or [[atom]] or another constructor function.
  */
-export default class BaseAtom<T> {
+export default abstract class BaseAtom<T> {
 	/**
 	 * The value of the atom, BaseAtom does not provide any means for updating
 	 * this after the object is created.

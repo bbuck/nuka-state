@@ -115,6 +115,14 @@ export default class ReadonlyAtom<T> extends BaseAtom<T> {
 	#stop: VoidFunction | undefined;
 	#live: boolean;
 
+	static isReadonlyAtom(obj: unknown): obj is ReadonlyAtom<unknown> {
+		if (typeof obj === 'object') {
+			return obj?.constructor?.name === 'ReadonlyAtom';
+		}
+
+		return false;
+	}
+
 	constructor(initialValue: T, start?: ReadonlyAtomStarter<T>) {
 		super(initialValue);
 

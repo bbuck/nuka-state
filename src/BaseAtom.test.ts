@@ -1,15 +1,19 @@
 import BaseAtom from './BaseAtom';
 
 describe('BaseAtom', () => {
+	// BaseAtom is abstract, have to test a subclass so let's make one that's
+	// empty.
+	class TestAtom<T> extends BaseAtom<T> {}
+
 	describe('constructing instances', () => {
 		it('allows creation with new', () => {
-			expect(() => new BaseAtom(null)).not.toThrow();
+			expect(() => new TestAtom(null)).not.toThrow();
 		});
 	});
 
 	describe('get value', () => {
 		it('allows access to the value via the getter', () => {
-			const atom = new BaseAtom([]);
+			const atom = new TestAtom([]);
 			expect(() => atom.value.length).not.toThrow();
 		});
 
@@ -23,7 +27,7 @@ describe('BaseAtom', () => {
 			['object', {}],
 			['array', []],
 		])('when created with a %s it returns the same value', (_typ, value) => {
-			const atom = new BaseAtom(value);
+			const atom = new TestAtom(value);
 
 			expect(atom.value).toEqual(value);
 		});
@@ -31,7 +35,7 @@ describe('BaseAtom', () => {
 
 	describe('.subscribe', () => {
 		it('allows users to subscribe', () => {
-			const atom = new BaseAtom(10);
+			const atom = new TestAtom(10);
 
 			// eslint-disable-next-line @typescript-eslint/no-empty-function
 			expect(() => atom.subscribe(_atom => {})).not.toThrow();
@@ -40,7 +44,7 @@ describe('BaseAtom', () => {
 
 	describe('.unsubscribe', () => {
 		it('allows users to unsubscribe', () => {
-			const atom = new BaseAtom(10);
+			const atom = new TestAtom(10);
 
 			// eslint-disable-next-line @typescript-eslint/no-empty-function
 			expect(() => atom.unsubscribe(_atom => {})).not.toThrow();

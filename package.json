@@ -38,7 +38,7 @@
 	"bugs": {
 		"url": "https://github.com/bbuck/nuka-state/issues"
 	},
-	"homepage": "https://github.com/bbuck/nuka-state#readme",
+	"homepage": "https://bbuck.github.io/nuka-state",
 	"devDependencies": {
 		"@types/jest": "^26.0.22",
 		"@typescript-eslint/eslint-plugin": "^4.22.0",

@@ -58,6 +58,88 @@
 	<div class="row">
 		<div class="col-8 col-content">
 			<div class="tsd-panel tsd-typography">
+				<a href="#nukastate" id="nukastate" style="color: inherit; text-decoration: none;">
+					<h1>@nuka/state</h1>
+				</a>
+				<a href="#installation" id="installation" style="color: inherit; text-decoration: none;">
+					<h2>Installation</h2>
+				</a>
+				<p>TODO: Publish to NPM and provide installation insructions</p>
+				<a href="#description" id="description" style="color: inherit; text-decoration: none;">
+					<h2>Description</h2>
+				</a>
+				<p><code>@nuka/state</code> is an application state-management library that focus on small
+					units of state instead of large chunks of global state. The idea is that small
+					state changes should not affect parts of a project that don&#39;t care/depend on
+					those changes. This is accomplished with the <strong>atom</strong>, the smallest unit of state
+					storage in <code>@nuka/state</code>. You encapsulate your state values in an <strong>atom</strong> and then
+					you can use the value anywhere in your project. Combine that with subscribing
+					to the item to be notified when the value is modified and you can react to
+				state changes no matter when or where they occur.</p>
+				<p>Here is a simple counter example:</p>
+				<pre><code class="language-javascript"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">atom</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;@nuka/state&#039;</span><span style="color: #000000">;</span>
+
+<span style="color: #008000">// This is the magic, counter is now an atom and ready to be used.</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">counter</span><span style="color: #000000"> = </span><span style="color: #795E26">atom</span><span style="color: #000000">(</span><span style="color: #098658">0</span><span style="color: #000000">);</span>
+
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">countDisplay</span><span style="color: #000000"> = </span><span style="color: #001080">document</span><span style="color: #000000">.</span><span style="color: #795E26">querySelector</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;#count-display&#039;</span><span style="color: #000000">);</span>
+<span style="color: #008000">// subscribe functions receive the atom as their argument allowing for flexible</span>
+<span style="color: #008000">// definition patterns</span>
+<span style="color: #001080">counter</span><span style="color: #000000">.</span><span style="color: #795E26">subscribe</span><span style="color: #000000">(</span><span style="color: #001080">atom</span><span style="color: #000000"> </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #001080">countDisplay</span><span style="color: #000000">.</span><span style="color: #001080">textContent</span><span style="color: #000000"> = </span><span style="color: #A31515">`Current count: </span><span style="color: #0000FF">${</span><span style="color: #001080">atom</span><span style="color: #000000FF">.</span><span style="color: #001080">value</span><span style="color: #0000FF">}</span><span style="color: #A31515">`</span><span style="color: #000000">;</span>
+<span style="color: #000000">});</span>
+
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">incrementButton</span><span style="color: #000000"> = </span><span style="color: #001080">document</span><span style="color: #000000">.</span><span style="color: #795E26">querySelector</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;#increment-button&#039;</span><span style="color: #000000">);</span>
+<span style="color: #008000">// update receives the current value and should return the next new value,</span>
+<span style="color: #008000">// updates are queued and fired in order so multiple increments back to back</span>
+<span style="color: #008000">// will not cause any race conditions modifying the value.</span>
+<span style="color: #001080">incrementButton</span><span style="color: #000000">.</span><span style="color: #795E26">addEventListener</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;click&#039;</span><span style="color: #000000">, () </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> </span><span style="color: #001080">counter</span><span style="color: #000000">.</span><span style="color: #795E26">update</span><span style="color: #000000">(</span><span style="color: #001080">n</span><span style="color: #000000"> </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> </span><span style="color: #001080">n</span><span style="color: #000000"> + </span><span style="color: #098658">1</span><span style="color: #000000">));</span>
+</code></pre>
+				<p><a href="https://codepen.io/bbuck/pen/yLgwBGL?editors=0010">Try it out on CodePen!</a></p>
+				<a href="#roadmap" id="roadmap" style="color: inherit; text-decoration: none;">
+					<h2>Roadmap</h2>
+				</a>
+				<ul>
+					<li><input checked="" disabled="" type="checkbox"> Project setup (mostly done, maybe some minor cleanup here and there)</li>
+					<li><input checked="" disabled="" type="checkbox"> BaseAtom (base implementation for an atom)</li>
+					<li><input checked="" disabled="" type="checkbox"> ReadonlyAtom (readonly atom implementation with dynamic update options)</li>
+					<li><input checked="" disabled="" type="checkbox"> Atom (mostly implemented, basic core library feature)</li>
+					<li><input disabled="" type="checkbox"> more documentation</li>
+					<li><input disabled="" type="checkbox"> more tests</li>
+					<li><input disabled="" type="checkbox"> Product (a combination of several atoms into a single atom-like structure)</li>
+					<li><input disabled="" type="checkbox"> Reactor (a atom-like wrapper around atoms that provide named actions for<pre><code><span style="color: #001080">use</span><span style="color: #000000">.</span>
+</code></pre>
+					</li>
+					<li><input disabled="" type="checkbox"> Projector (an atom-like structure that takes one or more atoms and provides<pre><code><span style="color: #001080">a</span><span style="color: #000000"> </span><span style="color: #001080">different</span><span style="color: #000000"> </span><span style="color: #001080">value</span><span style="color: #000000">, </span><span style="color: #001080">such</span><span style="color: #000000"> </span><span style="color: #AF00DB">as</span><span style="color: #000000"> </span><span style="color: #267F99">taking</span><span style="color: #000000"> </span><span style="color: #267F99">two</span><span style="color: #000000"> </span><span style="color: #267F99">count</span><span style="color: #000000"> </span><span style="color: #267F99">atoms</span><span style="color: #000000"> </span><span style="color: #267F99">and</span><span style="color: #000000"> </span><span style="color: #267F99">providing</span><span style="color: #000000"> </span><span style="color: #267F99">their</span>
+<span style="color: #001080">sum</span><span style="color: #000000"> </span><span style="color: #AF00DB">as</span><span style="color: #000000"> </span><span style="color: #267F99">it</span><span style="color: #A31515">&#039;s value)</span><span style="color: #CD3131">.</span>
+</code></pre>
+					</li>
+					<li><input disabled="" type="checkbox"> Publish to NPM</li>
+					<li><input disabled="" type="checkbox"> (Sister project) React hook bindings allowing components to respond to<pre><code><span style="color: #001080">atom</span><span style="color: #000000"> </span><span style="color: #001080">updates</span><span style="color: #000000">.</span>
+</code></pre>
+					</li>
+					<li><input disabled="" type="checkbox"> (Sister project) DOM tools to simplify working with atoms and native DOM<pre><code><span style="color: #001080">APIs</span><span style="color: #000000">.</span>
+</code></pre>
+					</li>
+				</ul>
+				<a href="#contributing" id="contributing" style="color: inherit; text-decoration: none;">
+					<h2>Contributing</h2>
+				</a>
+				<p>Contributions are totally welcome and greatly appreciated. In order to contribute
+				please follow these simple steps:</p>
+				<ol>
+					<li>Find or create an issue detailing the problem you&#39;re looking to solve.</li>
+					<li>Fork <code>nuka-state</code> and create a branch for your work.</li>
+					<li>Solve the problem (this step could be hard!)</li>
+					<li>Commit your work and create a pull request against the <code>develop</code> branch</li>
+					<li>Wait for a review from an existing maintainer or contributor</li>
+					<li>Enjoy the fruits of your labor as your work has been merged (there may be a
+					delay between merging the PR and it being published on NPM)!</li>
+				</ol>
+				<a href="#contributors" id="contributors" style="color: inherit; text-decoration: none;">
+					<h1>Contributors</h1>
+				</a>
+				<p>Brandon Buck / @bbuck (Creator/maintainer)</p>
 			</div>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
@@ -74,10 +156,19 @@
 						<a href="classes/baseatom.html" class="tsd-kind-icon">Base<wbr>Atom</a>
 					</li>
 					<li class=" tsd-kind-class tsd-has-type-parameter">
+						<a href="classes/projector.html" class="tsd-kind-icon">Projector</a>
+					</li>
+					<li class=" tsd-kind-class tsd-has-type-parameter">
 						<a href="classes/readonlyatom.html" class="tsd-kind-icon">Readonly<wbr>Atom</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-has-type-parameter">
+						<a href="interfaces/atomupdatefunction.html" class="tsd-kind-icon">Atom<wbr>Update<wbr>Function</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
 						<a href="interfaces/iatom.html" class="tsd-kind-icon">IAtom</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+						<a href="modules.html#atomupdater" class="tsd-kind-icon">Atom<wbr>Updater</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
 						<a href="modules.html#readonlyatomsetter" class="tsd-kind-icon">Readonly<wbr>Atom<wbr>Setter</a>
@@ -87,6 +178,9 @@
 					</li>
 					<li class=" tsd-kind-function tsd-has-type-parameter">
 						<a href="modules.html#atom" class="tsd-kind-icon">atom</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#projector" class="tsd-kind-icon">projector</a>
 					</li>
 					<li class=" tsd-kind-function tsd-has-type-parameter">
 						<a href="modules.html#readonlyatom" class="tsd-kind-icon">readonly<wbr>Atom</a>
@@ -112,6 +206,9 @@
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
 			</ul>
 		</div>
 	</div>

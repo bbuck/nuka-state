@@ -65,18 +65,21 @@
 							<h3>Classes</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-class tsd-has-type-parameter"><a href="classes/baseatom.html" class="tsd-kind-icon">Base<wbr>Atom</a></li>
+								<li class="tsd-kind-class tsd-has-type-parameter"><a href="classes/projector.html" class="tsd-kind-icon">Projector</a></li>
 								<li class="tsd-kind-class tsd-has-type-parameter"><a href="classes/readonlyatom.html" class="tsd-kind-icon">Readonly<wbr>Atom</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Interfaces</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-interface tsd-has-type-parameter"><a href="interfaces/atomupdatefunction.html" class="tsd-kind-icon">Atom<wbr>Update<wbr>Function</a></li>
 								<li class="tsd-kind-interface tsd-has-type-parameter"><a href="interfaces/iatom.html" class="tsd-kind-icon">IAtom</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Type aliases</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-type-alias tsd-has-type-parameter"><a href="modules.html#atomupdater" class="tsd-kind-icon">Atom<wbr>Updater</a></li>
 								<li class="tsd-kind-type-alias tsd-has-type-parameter"><a href="modules.html#readonlyatomsetter" class="tsd-kind-icon">Readonly<wbr>Atom<wbr>Setter</a></li>
 								<li class="tsd-kind-type-alias tsd-has-type-parameter"><a href="modules.html#readonlyatomstarter" class="tsd-kind-icon">Readonly<wbr>Atom<wbr>Starter</a></li>
 							</ul>
@@ -85,6 +88,7 @@
 							<h3>Functions</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-function tsd-has-type-parameter"><a href="modules.html#atom" class="tsd-kind-icon">atom</a></li>
+								<li class="tsd-kind-function tsd-has-type-parameter"><a href="modules.html#projector" class="tsd-kind-icon">projector</a></li>
 								<li class="tsd-kind-function tsd-has-type-parameter"><a href="modules.html#readonlyatom" class="tsd-kind-icon">readonly<wbr>Atom</a></li>
 							</ul>
 						</section>
@@ -94,12 +98,37 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Type aliases</h2>
 				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-has-type-parameter">
+					<a name="atomupdater" class="tsd-anchor"></a>
+					<h3>Atom<wbr>Updater</h3>
+					<div class="tsd-signature tsd-kind-icon">Atom<wbr>Updater&lt;T&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> | </span><a href="interfaces/atomupdatefunction.html" class="tsd-signature-type" data-tsd-kind="Interface">AtomUpdateFunction</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/e5fd0a0/src/Atom.ts#L18">Atom.ts:18</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>An atom updater is either a new value or a function that will generate the
+							next value for the atom.</p>
+						</div>
+					</div>
+					<h4 class="tsd-type-parameters-title">Type parameters</h4>
+					<ul class="tsd-type-parameters">
+						<li>
+							<h4>T</h4>
+							<div class="tsd-comment tsd-typography">
+								<p>The type of the atom&#39;s value.</p>
+							</div>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-has-type-parameter">
 					<a name="readonlyatomsetter" class="tsd-anchor"></a>
 					<h3>Readonly<wbr>Atom<wbr>Setter</h3>
 					<div class="tsd-signature tsd-kind-icon">Readonly<wbr>Atom<wbr>Setter&lt;T&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/1050347/src/ReadonlyAtom.ts#L8">ReadonlyAtom.ts:8</a></li>
+							<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/e5fd0a0/src/ReadonlyAtom.ts#L8">ReadonlyAtom.ts:8</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -145,7 +174,7 @@
 					<div class="tsd-signature tsd-kind-icon">Readonly<wbr>Atom<wbr>Starter&lt;T&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>set<span class="tsd-signature-symbol">: </span><a href="modules.html#readonlyatomsetter" class="tsd-signature-type" data-tsd-kind="Type alias">ReadonlyAtomSetter</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">VoidFunction</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/1050347/src/ReadonlyAtom.ts#L45">ReadonlyAtom.ts:45</a></li>
+							<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/e5fd0a0/src/ReadonlyAtom.ts#L45">ReadonlyAtom.ts:45</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -224,7 +253,80 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/1050347/src/atoms.ts#L15">atoms.ts:15</a></li>
+									<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/e5fd0a0/src/atoms.ts#L97">atoms.ts:97</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>The atom is the core of @nuka/sate. It represents a piece of data that can
+										be set or udpated anywhere in an application and provides the capability
+										for a user to subscribe and listen for the changes. This allows your data to
+										be used in a variety of places around your application while also allowing
+										the consumers that need to respond to changes the capability of knowing when
+										the value has been modified. Examples can range from user authentication
+										tokens, application objects, counts, or any other data where you may need
+										access to it in more than one place but wish to be notified when it&#39;s value
+									has changed.</p>
+								</div>
+								<a href="#example" id="example" style="color: inherit; text-decoration: none;">
+									<h3>Example</h3>
+								</a>
+								<pre><code class="language-typescript"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">counter</span><span style="color: #000000"> = </span><span style="color: #795E26">atom</span><span style="color: #000000">(</span><span style="color: #098658">0</span><span style="color: #000000">);</span>
+
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">countDisplay</span><span style="color: #000000"> = </span><span style="color: #001080">document</span><span style="color: #000000">.</span><span style="color: #795E26">querySelector</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;#count-display&#039;</span><span style="color: #000000">);</span>
+<span style="color: #001080">counter</span><span style="color: #000000">.</span><span style="color: #795E26">subscribe</span><span style="color: #000000">(</span><span style="color: #001080">atom</span><span style="color: #000000"> </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  </span><span style="color: #001080">countDisplay</span><span style="color: #000000">.</span><span style="color: #001080">textContent</span><span style="color: #000000"> = </span><span style="color: #A31515">`Current count: </span><span style="color: #0000FF">${</span><span style="color: #001080">atom</span><span style="color: #000000FF">.</span><span style="color: #001080">value</span><span style="color: #0000FF">}</span><span style="color: #A31515">`</span><span style="color: #000000">;</span>
+<span style="color: #000000">});</span>
+
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">incrementButton</span><span style="color: #000000"> = </span><span style="color: #001080">document</span><span style="color: #000000">.</span><span style="color: #795E26">querySelector</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;#increment-button&#039;</span><span style="color: #000000">);</span>
+<span style="color: #001080">incrementButton</span><span style="color: #000000">.</span><span style="color: #795E26">addEventListener</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;click&#039;</span><span style="color: #000000">, () </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> </span><span style="color: #001080">counter</span><span style="color: #000000">.</span><span style="color: #795E26">update</span><span style="color: #000000">(</span><span style="color: #001080">n</span><span style="color: #000000"> </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> </span><span style="color: #001080">n</span><span style="color: #000000"> + </span><span style="color: #098658">1</span><span style="color: #000000">));</span>
+</code></pre>
+							</div>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>T</h4>
+									<div class="tsd-comment tsd-typography">
+										<p>The type of the atom&#39;s value.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>value: <span class="tsd-signature-type">T</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The initial value of the atom.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">default</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>A new atom containing the initial value ready for use.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-has-type-parameter">
+					<a name="projector" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> projector</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter">
+						<li class="tsd-signature tsd-kind-icon">projector&lt;T, A1&gt;<span class="tsd-signature-symbol">(</span>atom1<span class="tsd-signature-symbol">: </span><a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A1</span><span class="tsd-signature-symbol">&gt;</span>, projection<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>a1<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A1</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="classes/projector.html" class="tsd-signature-type" data-tsd-kind="Class">Projector</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">projector&lt;T, A1, A2&gt;<span class="tsd-signature-symbol">(</span>atom1<span class="tsd-signature-symbol">: </span><a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A1</span><span class="tsd-signature-symbol">&gt;</span>, atom2<span class="tsd-signature-symbol">: </span><a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A2</span><span class="tsd-signature-symbol">&gt;</span>, projection<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>a1<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A1</span><span class="tsd-signature-symbol">&gt;</span>, a2<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A2</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="classes/projector.html" class="tsd-signature-type" data-tsd-kind="Class">Projector</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">projector&lt;T, A1, A2, A3&gt;<span class="tsd-signature-symbol">(</span>atom1<span class="tsd-signature-symbol">: </span><a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A1</span><span class="tsd-signature-symbol">&gt;</span>, atom2<span class="tsd-signature-symbol">: </span><a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A2</span><span class="tsd-signature-symbol">&gt;</span>, atom3<span class="tsd-signature-symbol">: </span><a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A3</span><span class="tsd-signature-symbol">&gt;</span>, projection<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>a1<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A1</span><span class="tsd-signature-symbol">&gt;</span>, a2<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A2</span><span class="tsd-signature-symbol">&gt;</span>, a3<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A3</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="classes/projector.html" class="tsd-signature-type" data-tsd-kind="Class">Projector</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">projector&lt;T, A1, A2, A3, A4&gt;<span class="tsd-signature-symbol">(</span>atom1<span class="tsd-signature-symbol">: </span><a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A1</span><span class="tsd-signature-symbol">&gt;</span>, atom2<span class="tsd-signature-symbol">: </span><a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A2</span><span class="tsd-signature-symbol">&gt;</span>, atom3<span class="tsd-signature-symbol">: </span><a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A3</span><span class="tsd-signature-symbol">&gt;</span>, atom4<span class="tsd-signature-symbol">: </span><a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A4</span><span class="tsd-signature-symbol">&gt;</span>, projection<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>a1<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A1</span><span class="tsd-signature-symbol">&gt;</span>, a2<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A2</span><span class="tsd-signature-symbol">&gt;</span>, a3<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A3</span><span class="tsd-signature-symbol">&gt;</span>, a4<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A4</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="classes/projector.html" class="tsd-signature-type" data-tsd-kind="Class">Projector</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">projector&lt;T, A1, A2, A3, A4, A5&gt;<span class="tsd-signature-symbol">(</span>atom1<span class="tsd-signature-symbol">: </span><a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A1</span><span class="tsd-signature-symbol">&gt;</span>, atom2<span class="tsd-signature-symbol">: </span><a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A2</span><span class="tsd-signature-symbol">&gt;</span>, atom3<span class="tsd-signature-symbol">: </span><a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A3</span><span class="tsd-signature-symbol">&gt;</span>, atom4<span class="tsd-signature-symbol">: </span><a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A4</span><span class="tsd-signature-symbol">&gt;</span>, atom5<span class="tsd-signature-symbol">: </span><a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A5</span><span class="tsd-signature-symbol">&gt;</span>, projection<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>a1<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A1</span><span class="tsd-signature-symbol">&gt;</span>, a2<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A2</span><span class="tsd-signature-symbol">&gt;</span>, a3<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A3</span><span class="tsd-signature-symbol">&gt;</span>, a4<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A4</span><span class="tsd-signature-symbol">&gt;</span>, a5<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A5</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="classes/projector.html" class="tsd-signature-type" data-tsd-kind="Class">Projector</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">projector&lt;T, A1, A2, A3, A4, A5, A6&gt;<span class="tsd-signature-symbol">(</span>atom1<span class="tsd-signature-symbol">: </span><a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A1</span><span class="tsd-signature-symbol">&gt;</span>, atom2<span class="tsd-signature-symbol">: </span><a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A2</span><span class="tsd-signature-symbol">&gt;</span>, atom3<span class="tsd-signature-symbol">: </span><a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A3</span><span class="tsd-signature-symbol">&gt;</span>, atom4<span class="tsd-signature-symbol">: </span><a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A4</span><span class="tsd-signature-symbol">&gt;</span>, atom5<span class="tsd-signature-symbol">: </span><a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A5</span><span class="tsd-signature-symbol">&gt;</span>, atom6<span class="tsd-signature-symbol">: </span><a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A6</span><span class="tsd-signature-symbol">&gt;</span>, projection<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>a1<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A1</span><span class="tsd-signature-symbol">&gt;</span>, a2<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A2</span><span class="tsd-signature-symbol">&gt;</span>, a3<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A3</span><span class="tsd-signature-symbol">&gt;</span>, a4<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A4</span><span class="tsd-signature-symbol">&gt;</span>, a5<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A5</span><span class="tsd-signature-symbol">&gt;</span>, a6<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A6</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="classes/projector.html" class="tsd-signature-type" data-tsd-kind="Class">Projector</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">projector&lt;T, A1, A2, A3, A4, A5, A6, A7&gt;<span class="tsd-signature-symbol">(</span>atom1<span class="tsd-signature-symbol">: </span><a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A1</span><span class="tsd-signature-symbol">&gt;</span>, atom2<span class="tsd-signature-symbol">: </span><a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A2</span><span class="tsd-signature-symbol">&gt;</span>, atom3<span class="tsd-signature-symbol">: </span><a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A3</span><span class="tsd-signature-symbol">&gt;</span>, atom4<span class="tsd-signature-symbol">: </span><a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A4</span><span class="tsd-signature-symbol">&gt;</span>, atom5<span class="tsd-signature-symbol">: </span><a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A5</span><span class="tsd-signature-symbol">&gt;</span>, atom6<span class="tsd-signature-symbol">: </span><a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A6</span><span class="tsd-signature-symbol">&gt;</span>, atom7<span class="tsd-signature-symbol">: </span><a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A7</span><span class="tsd-signature-symbol">&gt;</span>, projection<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>a1<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A1</span><span class="tsd-signature-symbol">&gt;</span>, a2<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A2</span><span class="tsd-signature-symbol">&gt;</span>, a3<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A3</span><span class="tsd-signature-symbol">&gt;</span>, a4<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A4</span><span class="tsd-signature-symbol">&gt;</span>, a5<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A5</span><span class="tsd-signature-symbol">&gt;</span>, a6<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A6</span><span class="tsd-signature-symbol">&gt;</span>, a7<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A7</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="classes/projector.html" class="tsd-signature-type" data-tsd-kind="Class">Projector</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">projector&lt;T, A1, A2, A3, A4, A5, A6, A7, A8&gt;<span class="tsd-signature-symbol">(</span>atom1<span class="tsd-signature-symbol">: </span><a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A1</span><span class="tsd-signature-symbol">&gt;</span>, atom2<span class="tsd-signature-symbol">: </span><a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A2</span><span class="tsd-signature-symbol">&gt;</span>, atom3<span class="tsd-signature-symbol">: </span><a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A3</span><span class="tsd-signature-symbol">&gt;</span>, atom4<span class="tsd-signature-symbol">: </span><a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A4</span><span class="tsd-signature-symbol">&gt;</span>, atom5<span class="tsd-signature-symbol">: </span><a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A5</span><span class="tsd-signature-symbol">&gt;</span>, atom6<span class="tsd-signature-symbol">: </span><a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A6</span><span class="tsd-signature-symbol">&gt;</span>, atom7<span class="tsd-signature-symbol">: </span><a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A7</span><span class="tsd-signature-symbol">&gt;</span>, atom8<span class="tsd-signature-symbol">: </span><a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A8</span><span class="tsd-signature-symbol">&gt;</span>, projection<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>a1<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A1</span><span class="tsd-signature-symbol">&gt;</span>, a2<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A2</span><span class="tsd-signature-symbol">&gt;</span>, a3<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A3</span><span class="tsd-signature-symbol">&gt;</span>, a4<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A4</span><span class="tsd-signature-symbol">&gt;</span>, a5<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A5</span><span class="tsd-signature-symbol">&gt;</span>, a6<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A6</span><span class="tsd-signature-symbol">&gt;</span>, a7<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A7</span><span class="tsd-signature-symbol">&gt;</span>, a8<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A8</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="classes/projector.html" class="tsd-signature-type" data-tsd-kind="Class">Projector</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">projector&lt;T, A1, A2, A3, A4, A5, A6, A7, A8, A9&gt;<span class="tsd-signature-symbol">(</span>atom1<span class="tsd-signature-symbol">: </span><a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A1</span><span class="tsd-signature-symbol">&gt;</span>, atom2<span class="tsd-signature-symbol">: </span><a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A2</span><span class="tsd-signature-symbol">&gt;</span>, atom3<span class="tsd-signature-symbol">: </span><a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A3</span><span class="tsd-signature-symbol">&gt;</span>, atom4<span class="tsd-signature-symbol">: </span><a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A4</span><span class="tsd-signature-symbol">&gt;</span>, atom5<span class="tsd-signature-symbol">: </span><a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A5</span><span class="tsd-signature-symbol">&gt;</span>, atom6<span class="tsd-signature-symbol">: </span><a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A6</span><span class="tsd-signature-symbol">&gt;</span>, atom7<span class="tsd-signature-symbol">: </span><a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A7</span><span class="tsd-signature-symbol">&gt;</span>, atom8<span class="tsd-signature-symbol">: </span><a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A8</span><span class="tsd-signature-symbol">&gt;</span>, atom9<span class="tsd-signature-symbol">: </span><a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A9</span><span class="tsd-signature-symbol">&gt;</span>, projection<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>a1<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A1</span><span class="tsd-signature-symbol">&gt;</span>, a2<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A2</span><span class="tsd-signature-symbol">&gt;</span>, a3<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A3</span><span class="tsd-signature-symbol">&gt;</span>, a4<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A4</span><span class="tsd-signature-symbol">&gt;</span>, a5<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A5</span><span class="tsd-signature-symbol">&gt;</span>, a6<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A6</span><span class="tsd-signature-symbol">&gt;</span>, a7<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A7</span><span class="tsd-signature-symbol">&gt;</span>, a8<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A8</span><span class="tsd-signature-symbol">&gt;</span>, a9<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A9</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="classes/projector.html" class="tsd-signature-type" data-tsd-kind="Class">Projector</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">projector&lt;T, A1, A2, A3, A4, A5, A6, A7, A8, A9, A10&gt;<span class="tsd-signature-symbol">(</span>atom1<span class="tsd-signature-symbol">: </span><a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A1</span><span class="tsd-signature-symbol">&gt;</span>, atom2<span class="tsd-signature-symbol">: </span><a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A2</span><span class="tsd-signature-symbol">&gt;</span>, atom3<span class="tsd-signature-symbol">: </span><a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A3</span><span class="tsd-signature-symbol">&gt;</span>, atom4<span class="tsd-signature-symbol">: </span><a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A4</span><span class="tsd-signature-symbol">&gt;</span>, atom5<span class="tsd-signature-symbol">: </span><a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A5</span><span class="tsd-signature-symbol">&gt;</span>, atom6<span class="tsd-signature-symbol">: </span><a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A6</span><span class="tsd-signature-symbol">&gt;</span>, atom7<span class="tsd-signature-symbol">: </span><a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A7</span><span class="tsd-signature-symbol">&gt;</span>, atom8<span class="tsd-signature-symbol">: </span><a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A8</span><span class="tsd-signature-symbol">&gt;</span>, atom9<span class="tsd-signature-symbol">: </span><a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A9</span><span class="tsd-signature-symbol">&gt;</span>, atom10<span class="tsd-signature-symbol">: </span><a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A10</span><span class="tsd-signature-symbol">&gt;</span>, projection<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>a1<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A1</span><span class="tsd-signature-symbol">&gt;</span>, a2<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A2</span><span class="tsd-signature-symbol">&gt;</span>, a3<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A3</span><span class="tsd-signature-symbol">&gt;</span>, a4<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A4</span><span class="tsd-signature-symbol">&gt;</span>, a5<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A5</span><span class="tsd-signature-symbol">&gt;</span>, a6<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A6</span><span class="tsd-signature-symbol">&gt;</span>, a7<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A7</span><span class="tsd-signature-symbol">&gt;</span>, a8<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A8</span><span class="tsd-signature-symbol">&gt;</span>, a9<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A9</span><span class="tsd-signature-symbol">&gt;</span>, a10<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A10</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="classes/projector.html" class="tsd-signature-type" data-tsd-kind="Class">Projector</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">projector&lt;T, A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11&gt;<span class="tsd-signature-symbol">(</span>atom1<span class="tsd-signature-symbol">: </span><a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A1</span><span class="tsd-signature-symbol">&gt;</span>, atom2<span class="tsd-signature-symbol">: </span><a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A2</span><span class="tsd-signature-symbol">&gt;</span>, atom3<span class="tsd-signature-symbol">: </span><a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A3</span><span class="tsd-signature-symbol">&gt;</span>, atom4<span class="tsd-signature-symbol">: </span><a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A4</span><span class="tsd-signature-symbol">&gt;</span>, atom5<span class="tsd-signature-symbol">: </span><a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A5</span><span class="tsd-signature-symbol">&gt;</span>, atom6<span class="tsd-signature-symbol">: </span><a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A6</span><span class="tsd-signature-symbol">&gt;</span>, atom7<span class="tsd-signature-symbol">: </span><a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A7</span><span class="tsd-signature-symbol">&gt;</span>, atom8<span class="tsd-signature-symbol">: </span><a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A8</span><span class="tsd-signature-symbol">&gt;</span>, atom9<span class="tsd-signature-symbol">: </span><a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A9</span><span class="tsd-signature-symbol">&gt;</span>, atom10<span class="tsd-signature-symbol">: </span><a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A10</span><span class="tsd-signature-symbol">&gt;</span>, atom11<span class="tsd-signature-symbol">: </span><a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A11</span><span class="tsd-signature-symbol">&gt;</span>, projection<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>a1<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A1</span><span class="tsd-signature-symbol">&gt;</span>, a2<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A2</span><span class="tsd-signature-symbol">&gt;</span>, a3<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A3</span><span class="tsd-signature-symbol">&gt;</span>, a4<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A4</span><span class="tsd-signature-symbol">&gt;</span>, a5<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A5</span><span class="tsd-signature-symbol">&gt;</span>, a6<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A6</span><span class="tsd-signature-symbol">&gt;</span>, a7<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A7</span><span class="tsd-signature-symbol">&gt;</span>, a8<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A8</span><span class="tsd-signature-symbol">&gt;</span>, a9<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A9</span><span class="tsd-signature-symbol">&gt;</span>, a10<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A10</span><span class="tsd-signature-symbol">&gt;</span>, a11<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A11</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="classes/projector.html" class="tsd-signature-type" data-tsd-kind="Class">Projector</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">projector&lt;T, A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11, A12&gt;<span class="tsd-signature-symbol">(</span>atom1<span class="tsd-signature-symbol">: </span><a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A1</span><span class="tsd-signature-symbol">&gt;</span>, atom2<span class="tsd-signature-symbol">: </span><a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A2</span><span class="tsd-signature-symbol">&gt;</span>, atom3<span class="tsd-signature-symbol">: </span><a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A3</span><span class="tsd-signature-symbol">&gt;</span>, atom4<span class="tsd-signature-symbol">: </span><a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A4</span><span class="tsd-signature-symbol">&gt;</span>, atom5<span class="tsd-signature-symbol">: </span><a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A5</span><span class="tsd-signature-symbol">&gt;</span>, atom6<span class="tsd-signature-symbol">: </span><a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A6</span><span class="tsd-signature-symbol">&gt;</span>, atom7<span class="tsd-signature-symbol">: </span><a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A7</span><span class="tsd-signature-symbol">&gt;</span>, atom8<span class="tsd-signature-symbol">: </span><a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A8</span><span class="tsd-signature-symbol">&gt;</span>, atom9<span class="tsd-signature-symbol">: </span><a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A9</span><span class="tsd-signature-symbol">&gt;</span>, atom10<span class="tsd-signature-symbol">: </span><a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A10</span><span class="tsd-signature-symbol">&gt;</span>, atom11<span class="tsd-signature-symbol">: </span><a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A11</span><span class="tsd-signature-symbol">&gt;</span>, atom12<span class="tsd-signature-symbol">: </span><a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A12</span><span class="tsd-signature-symbol">&gt;</span>, projection<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>a1<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A1</span><span class="tsd-signature-symbol">&gt;</span>, a2<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A2</span><span class="tsd-signature-symbol">&gt;</span>, a3<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A3</span><span class="tsd-signature-symbol">&gt;</span>, a4<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A4</span><span class="tsd-signature-symbol">&gt;</span>, a5<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A5</span><span class="tsd-signature-symbol">&gt;</span>, a6<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A6</span><span class="tsd-signature-symbol">&gt;</span>, a7<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A7</span><span class="tsd-signature-symbol">&gt;</span>, a8<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A8</span><span class="tsd-signature-symbol">&gt;</span>, a9<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A9</span><span class="tsd-signature-symbol">&gt;</span>, a10<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A10</span><span class="tsd-signature-symbol">&gt;</span>, a11<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A11</span><span class="tsd-signature-symbol">&gt;</span>, a12<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A12</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="classes/projector.html" class="tsd-signature-type" data-tsd-kind="Class">Projector</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/e5fd0a0/src/atoms.ts#L279">atoms.ts:279</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -232,14 +334,1116 @@
 								<li>
 									<h4>T</h4>
 								</li>
+								<li>
+									<h4>A1</h4>
+								</li>
 							</ul>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>value: <span class="tsd-signature-type">T</span></h5>
+									<h5>atom1: <a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A1</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>projection: <span class="tsd-signature-symbol">(</span>a1<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A1</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">T</span></h5>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter-signature">
+											<ul class="tsd-signatures tsd-kind-type-literal">
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>a1<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A1</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span></li>
+											</ul>
+											<ul class="tsd-descriptions">
+												<li class="tsd-description">
+													<h4 class="tsd-parameters-title">Parameters</h4>
+													<ul class="tsd-parameters">
+														<li>
+															<h5>a1: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A1</span><span class="tsd-signature-symbol">&gt;</span></h5>
+														</li>
+													</ul>
+													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span></h4>
+												</li>
+											</ul>
+										</li>
+									</ul>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">default</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="classes/projector.html" class="tsd-signature-type" data-tsd-kind="Class">Projector</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/e5fd0a0/src/atoms.ts#L279">atoms.ts:279</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>T</h4>
+								</li>
+								<li>
+									<h4>A1</h4>
+								</li>
+								<li>
+									<h4>A2</h4>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>atom1: <a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A1</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>atom2: <a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A2</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>projection: <span class="tsd-signature-symbol">(</span>a1<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A1</span><span class="tsd-signature-symbol">&gt;</span>, a2<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A2</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">T</span></h5>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter-signature">
+											<ul class="tsd-signatures tsd-kind-type-literal">
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>a1<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A1</span><span class="tsd-signature-symbol">&gt;</span>, a2<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A2</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span></li>
+											</ul>
+											<ul class="tsd-descriptions">
+												<li class="tsd-description">
+													<h4 class="tsd-parameters-title">Parameters</h4>
+													<ul class="tsd-parameters">
+														<li>
+															<h5>a1: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A1</span><span class="tsd-signature-symbol">&gt;</span></h5>
+														</li>
+														<li>
+															<h5>a2: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A2</span><span class="tsd-signature-symbol">&gt;</span></h5>
+														</li>
+													</ul>
+													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span></h4>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="classes/projector.html" class="tsd-signature-type" data-tsd-kind="Class">Projector</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/e5fd0a0/src/atoms.ts#L279">atoms.ts:279</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>T</h4>
+								</li>
+								<li>
+									<h4>A1</h4>
+								</li>
+								<li>
+									<h4>A2</h4>
+								</li>
+								<li>
+									<h4>A3</h4>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>atom1: <a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A1</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>atom2: <a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A2</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>atom3: <a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A3</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>projection: <span class="tsd-signature-symbol">(</span>a1<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A1</span><span class="tsd-signature-symbol">&gt;</span>, a2<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A2</span><span class="tsd-signature-symbol">&gt;</span>, a3<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A3</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">T</span></h5>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter-signature">
+											<ul class="tsd-signatures tsd-kind-type-literal">
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>a1<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A1</span><span class="tsd-signature-symbol">&gt;</span>, a2<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A2</span><span class="tsd-signature-symbol">&gt;</span>, a3<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A3</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span></li>
+											</ul>
+											<ul class="tsd-descriptions">
+												<li class="tsd-description">
+													<h4 class="tsd-parameters-title">Parameters</h4>
+													<ul class="tsd-parameters">
+														<li>
+															<h5>a1: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A1</span><span class="tsd-signature-symbol">&gt;</span></h5>
+														</li>
+														<li>
+															<h5>a2: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A2</span><span class="tsd-signature-symbol">&gt;</span></h5>
+														</li>
+														<li>
+															<h5>a3: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A3</span><span class="tsd-signature-symbol">&gt;</span></h5>
+														</li>
+													</ul>
+													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span></h4>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="classes/projector.html" class="tsd-signature-type" data-tsd-kind="Class">Projector</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/e5fd0a0/src/atoms.ts#L279">atoms.ts:279</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>T</h4>
+								</li>
+								<li>
+									<h4>A1</h4>
+								</li>
+								<li>
+									<h4>A2</h4>
+								</li>
+								<li>
+									<h4>A3</h4>
+								</li>
+								<li>
+									<h4>A4</h4>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>atom1: <a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A1</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>atom2: <a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A2</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>atom3: <a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A3</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>atom4: <a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A4</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>projection: <span class="tsd-signature-symbol">(</span>a1<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A1</span><span class="tsd-signature-symbol">&gt;</span>, a2<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A2</span><span class="tsd-signature-symbol">&gt;</span>, a3<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A3</span><span class="tsd-signature-symbol">&gt;</span>, a4<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A4</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">T</span></h5>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter-signature">
+											<ul class="tsd-signatures tsd-kind-type-literal">
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>a1<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A1</span><span class="tsd-signature-symbol">&gt;</span>, a2<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A2</span><span class="tsd-signature-symbol">&gt;</span>, a3<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A3</span><span class="tsd-signature-symbol">&gt;</span>, a4<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A4</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span></li>
+											</ul>
+											<ul class="tsd-descriptions">
+												<li class="tsd-description">
+													<h4 class="tsd-parameters-title">Parameters</h4>
+													<ul class="tsd-parameters">
+														<li>
+															<h5>a1: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A1</span><span class="tsd-signature-symbol">&gt;</span></h5>
+														</li>
+														<li>
+															<h5>a2: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A2</span><span class="tsd-signature-symbol">&gt;</span></h5>
+														</li>
+														<li>
+															<h5>a3: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A3</span><span class="tsd-signature-symbol">&gt;</span></h5>
+														</li>
+														<li>
+															<h5>a4: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A4</span><span class="tsd-signature-symbol">&gt;</span></h5>
+														</li>
+													</ul>
+													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span></h4>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="classes/projector.html" class="tsd-signature-type" data-tsd-kind="Class">Projector</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/e5fd0a0/src/atoms.ts#L279">atoms.ts:279</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>T</h4>
+								</li>
+								<li>
+									<h4>A1</h4>
+								</li>
+								<li>
+									<h4>A2</h4>
+								</li>
+								<li>
+									<h4>A3</h4>
+								</li>
+								<li>
+									<h4>A4</h4>
+								</li>
+								<li>
+									<h4>A5</h4>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>atom1: <a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A1</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>atom2: <a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A2</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>atom3: <a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A3</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>atom4: <a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A4</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>atom5: <a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A5</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>projection: <span class="tsd-signature-symbol">(</span>a1<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A1</span><span class="tsd-signature-symbol">&gt;</span>, a2<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A2</span><span class="tsd-signature-symbol">&gt;</span>, a3<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A3</span><span class="tsd-signature-symbol">&gt;</span>, a4<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A4</span><span class="tsd-signature-symbol">&gt;</span>, a5<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A5</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">T</span></h5>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter-signature">
+											<ul class="tsd-signatures tsd-kind-type-literal">
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>a1<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A1</span><span class="tsd-signature-symbol">&gt;</span>, a2<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A2</span><span class="tsd-signature-symbol">&gt;</span>, a3<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A3</span><span class="tsd-signature-symbol">&gt;</span>, a4<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A4</span><span class="tsd-signature-symbol">&gt;</span>, a5<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A5</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span></li>
+											</ul>
+											<ul class="tsd-descriptions">
+												<li class="tsd-description">
+													<h4 class="tsd-parameters-title">Parameters</h4>
+													<ul class="tsd-parameters">
+														<li>
+															<h5>a1: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A1</span><span class="tsd-signature-symbol">&gt;</span></h5>
+														</li>
+														<li>
+															<h5>a2: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A2</span><span class="tsd-signature-symbol">&gt;</span></h5>
+														</li>
+														<li>
+															<h5>a3: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A3</span><span class="tsd-signature-symbol">&gt;</span></h5>
+														</li>
+														<li>
+															<h5>a4: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A4</span><span class="tsd-signature-symbol">&gt;</span></h5>
+														</li>
+														<li>
+															<h5>a5: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A5</span><span class="tsd-signature-symbol">&gt;</span></h5>
+														</li>
+													</ul>
+													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span></h4>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="classes/projector.html" class="tsd-signature-type" data-tsd-kind="Class">Projector</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/e5fd0a0/src/atoms.ts#L279">atoms.ts:279</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>T</h4>
+								</li>
+								<li>
+									<h4>A1</h4>
+								</li>
+								<li>
+									<h4>A2</h4>
+								</li>
+								<li>
+									<h4>A3</h4>
+								</li>
+								<li>
+									<h4>A4</h4>
+								</li>
+								<li>
+									<h4>A5</h4>
+								</li>
+								<li>
+									<h4>A6</h4>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>atom1: <a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A1</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>atom2: <a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A2</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>atom3: <a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A3</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>atom4: <a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A4</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>atom5: <a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A5</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>atom6: <a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A6</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>projection: <span class="tsd-signature-symbol">(</span>a1<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A1</span><span class="tsd-signature-symbol">&gt;</span>, a2<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A2</span><span class="tsd-signature-symbol">&gt;</span>, a3<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A3</span><span class="tsd-signature-symbol">&gt;</span>, a4<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A4</span><span class="tsd-signature-symbol">&gt;</span>, a5<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A5</span><span class="tsd-signature-symbol">&gt;</span>, a6<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A6</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">T</span></h5>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter-signature">
+											<ul class="tsd-signatures tsd-kind-type-literal">
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>a1<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A1</span><span class="tsd-signature-symbol">&gt;</span>, a2<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A2</span><span class="tsd-signature-symbol">&gt;</span>, a3<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A3</span><span class="tsd-signature-symbol">&gt;</span>, a4<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A4</span><span class="tsd-signature-symbol">&gt;</span>, a5<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A5</span><span class="tsd-signature-symbol">&gt;</span>, a6<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A6</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span></li>
+											</ul>
+											<ul class="tsd-descriptions">
+												<li class="tsd-description">
+													<h4 class="tsd-parameters-title">Parameters</h4>
+													<ul class="tsd-parameters">
+														<li>
+															<h5>a1: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A1</span><span class="tsd-signature-symbol">&gt;</span></h5>
+														</li>
+														<li>
+															<h5>a2: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A2</span><span class="tsd-signature-symbol">&gt;</span></h5>
+														</li>
+														<li>
+															<h5>a3: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A3</span><span class="tsd-signature-symbol">&gt;</span></h5>
+														</li>
+														<li>
+															<h5>a4: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A4</span><span class="tsd-signature-symbol">&gt;</span></h5>
+														</li>
+														<li>
+															<h5>a5: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A5</span><span class="tsd-signature-symbol">&gt;</span></h5>
+														</li>
+														<li>
+															<h5>a6: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A6</span><span class="tsd-signature-symbol">&gt;</span></h5>
+														</li>
+													</ul>
+													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span></h4>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="classes/projector.html" class="tsd-signature-type" data-tsd-kind="Class">Projector</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/e5fd0a0/src/atoms.ts#L279">atoms.ts:279</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>T</h4>
+								</li>
+								<li>
+									<h4>A1</h4>
+								</li>
+								<li>
+									<h4>A2</h4>
+								</li>
+								<li>
+									<h4>A3</h4>
+								</li>
+								<li>
+									<h4>A4</h4>
+								</li>
+								<li>
+									<h4>A5</h4>
+								</li>
+								<li>
+									<h4>A6</h4>
+								</li>
+								<li>
+									<h4>A7</h4>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>atom1: <a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A1</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>atom2: <a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A2</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>atom3: <a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A3</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>atom4: <a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A4</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>atom5: <a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A5</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>atom6: <a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A6</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>atom7: <a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A7</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>projection: <span class="tsd-signature-symbol">(</span>a1<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A1</span><span class="tsd-signature-symbol">&gt;</span>, a2<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A2</span><span class="tsd-signature-symbol">&gt;</span>, a3<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A3</span><span class="tsd-signature-symbol">&gt;</span>, a4<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A4</span><span class="tsd-signature-symbol">&gt;</span>, a5<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A5</span><span class="tsd-signature-symbol">&gt;</span>, a6<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A6</span><span class="tsd-signature-symbol">&gt;</span>, a7<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A7</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">T</span></h5>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter-signature">
+											<ul class="tsd-signatures tsd-kind-type-literal">
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>a1<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A1</span><span class="tsd-signature-symbol">&gt;</span>, a2<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A2</span><span class="tsd-signature-symbol">&gt;</span>, a3<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A3</span><span class="tsd-signature-symbol">&gt;</span>, a4<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A4</span><span class="tsd-signature-symbol">&gt;</span>, a5<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A5</span><span class="tsd-signature-symbol">&gt;</span>, a6<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A6</span><span class="tsd-signature-symbol">&gt;</span>, a7<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A7</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span></li>
+											</ul>
+											<ul class="tsd-descriptions">
+												<li class="tsd-description">
+													<h4 class="tsd-parameters-title">Parameters</h4>
+													<ul class="tsd-parameters">
+														<li>
+															<h5>a1: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A1</span><span class="tsd-signature-symbol">&gt;</span></h5>
+														</li>
+														<li>
+															<h5>a2: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A2</span><span class="tsd-signature-symbol">&gt;</span></h5>
+														</li>
+														<li>
+															<h5>a3: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A3</span><span class="tsd-signature-symbol">&gt;</span></h5>
+														</li>
+														<li>
+															<h5>a4: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A4</span><span class="tsd-signature-symbol">&gt;</span></h5>
+														</li>
+														<li>
+															<h5>a5: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A5</span><span class="tsd-signature-symbol">&gt;</span></h5>
+														</li>
+														<li>
+															<h5>a6: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A6</span><span class="tsd-signature-symbol">&gt;</span></h5>
+														</li>
+														<li>
+															<h5>a7: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A7</span><span class="tsd-signature-symbol">&gt;</span></h5>
+														</li>
+													</ul>
+													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span></h4>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="classes/projector.html" class="tsd-signature-type" data-tsd-kind="Class">Projector</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/e5fd0a0/src/atoms.ts#L279">atoms.ts:279</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>T</h4>
+								</li>
+								<li>
+									<h4>A1</h4>
+								</li>
+								<li>
+									<h4>A2</h4>
+								</li>
+								<li>
+									<h4>A3</h4>
+								</li>
+								<li>
+									<h4>A4</h4>
+								</li>
+								<li>
+									<h4>A5</h4>
+								</li>
+								<li>
+									<h4>A6</h4>
+								</li>
+								<li>
+									<h4>A7</h4>
+								</li>
+								<li>
+									<h4>A8</h4>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>atom1: <a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A1</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>atom2: <a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A2</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>atom3: <a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A3</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>atom4: <a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A4</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>atom5: <a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A5</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>atom6: <a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A6</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>atom7: <a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A7</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>atom8: <a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A8</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>projection: <span class="tsd-signature-symbol">(</span>a1<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A1</span><span class="tsd-signature-symbol">&gt;</span>, a2<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A2</span><span class="tsd-signature-symbol">&gt;</span>, a3<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A3</span><span class="tsd-signature-symbol">&gt;</span>, a4<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A4</span><span class="tsd-signature-symbol">&gt;</span>, a5<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A5</span><span class="tsd-signature-symbol">&gt;</span>, a6<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A6</span><span class="tsd-signature-symbol">&gt;</span>, a7<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A7</span><span class="tsd-signature-symbol">&gt;</span>, a8<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A8</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">T</span></h5>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter-signature">
+											<ul class="tsd-signatures tsd-kind-type-literal">
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>a1<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A1</span><span class="tsd-signature-symbol">&gt;</span>, a2<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A2</span><span class="tsd-signature-symbol">&gt;</span>, a3<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A3</span><span class="tsd-signature-symbol">&gt;</span>, a4<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A4</span><span class="tsd-signature-symbol">&gt;</span>, a5<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A5</span><span class="tsd-signature-symbol">&gt;</span>, a6<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A6</span><span class="tsd-signature-symbol">&gt;</span>, a7<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A7</span><span class="tsd-signature-symbol">&gt;</span>, a8<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A8</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span></li>
+											</ul>
+											<ul class="tsd-descriptions">
+												<li class="tsd-description">
+													<h4 class="tsd-parameters-title">Parameters</h4>
+													<ul class="tsd-parameters">
+														<li>
+															<h5>a1: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A1</span><span class="tsd-signature-symbol">&gt;</span></h5>
+														</li>
+														<li>
+															<h5>a2: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A2</span><span class="tsd-signature-symbol">&gt;</span></h5>
+														</li>
+														<li>
+															<h5>a3: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A3</span><span class="tsd-signature-symbol">&gt;</span></h5>
+														</li>
+														<li>
+															<h5>a4: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A4</span><span class="tsd-signature-symbol">&gt;</span></h5>
+														</li>
+														<li>
+															<h5>a5: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A5</span><span class="tsd-signature-symbol">&gt;</span></h5>
+														</li>
+														<li>
+															<h5>a6: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A6</span><span class="tsd-signature-symbol">&gt;</span></h5>
+														</li>
+														<li>
+															<h5>a7: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A7</span><span class="tsd-signature-symbol">&gt;</span></h5>
+														</li>
+														<li>
+															<h5>a8: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A8</span><span class="tsd-signature-symbol">&gt;</span></h5>
+														</li>
+													</ul>
+													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span></h4>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="classes/projector.html" class="tsd-signature-type" data-tsd-kind="Class">Projector</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/e5fd0a0/src/atoms.ts#L279">atoms.ts:279</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>T</h4>
+								</li>
+								<li>
+									<h4>A1</h4>
+								</li>
+								<li>
+									<h4>A2</h4>
+								</li>
+								<li>
+									<h4>A3</h4>
+								</li>
+								<li>
+									<h4>A4</h4>
+								</li>
+								<li>
+									<h4>A5</h4>
+								</li>
+								<li>
+									<h4>A6</h4>
+								</li>
+								<li>
+									<h4>A7</h4>
+								</li>
+								<li>
+									<h4>A8</h4>
+								</li>
+								<li>
+									<h4>A9</h4>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>atom1: <a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A1</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>atom2: <a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A2</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>atom3: <a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A3</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>atom4: <a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A4</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>atom5: <a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A5</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>atom6: <a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A6</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>atom7: <a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A7</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>atom8: <a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A8</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>atom9: <a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A9</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>projection: <span class="tsd-signature-symbol">(</span>a1<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A1</span><span class="tsd-signature-symbol">&gt;</span>, a2<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A2</span><span class="tsd-signature-symbol">&gt;</span>, a3<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A3</span><span class="tsd-signature-symbol">&gt;</span>, a4<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A4</span><span class="tsd-signature-symbol">&gt;</span>, a5<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A5</span><span class="tsd-signature-symbol">&gt;</span>, a6<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A6</span><span class="tsd-signature-symbol">&gt;</span>, a7<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A7</span><span class="tsd-signature-symbol">&gt;</span>, a8<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A8</span><span class="tsd-signature-symbol">&gt;</span>, a9<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A9</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">T</span></h5>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter-signature">
+											<ul class="tsd-signatures tsd-kind-type-literal">
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>a1<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A1</span><span class="tsd-signature-symbol">&gt;</span>, a2<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A2</span><span class="tsd-signature-symbol">&gt;</span>, a3<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A3</span><span class="tsd-signature-symbol">&gt;</span>, a4<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A4</span><span class="tsd-signature-symbol">&gt;</span>, a5<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A5</span><span class="tsd-signature-symbol">&gt;</span>, a6<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A6</span><span class="tsd-signature-symbol">&gt;</span>, a7<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A7</span><span class="tsd-signature-symbol">&gt;</span>, a8<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A8</span><span class="tsd-signature-symbol">&gt;</span>, a9<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A9</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span></li>
+											</ul>
+											<ul class="tsd-descriptions">
+												<li class="tsd-description">
+													<h4 class="tsd-parameters-title">Parameters</h4>
+													<ul class="tsd-parameters">
+														<li>
+															<h5>a1: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A1</span><span class="tsd-signature-symbol">&gt;</span></h5>
+														</li>
+														<li>
+															<h5>a2: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A2</span><span class="tsd-signature-symbol">&gt;</span></h5>
+														</li>
+														<li>
+															<h5>a3: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A3</span><span class="tsd-signature-symbol">&gt;</span></h5>
+														</li>
+														<li>
+															<h5>a4: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A4</span><span class="tsd-signature-symbol">&gt;</span></h5>
+														</li>
+														<li>
+															<h5>a5: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A5</span><span class="tsd-signature-symbol">&gt;</span></h5>
+														</li>
+														<li>
+															<h5>a6: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A6</span><span class="tsd-signature-symbol">&gt;</span></h5>
+														</li>
+														<li>
+															<h5>a7: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A7</span><span class="tsd-signature-symbol">&gt;</span></h5>
+														</li>
+														<li>
+															<h5>a8: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A8</span><span class="tsd-signature-symbol">&gt;</span></h5>
+														</li>
+														<li>
+															<h5>a9: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A9</span><span class="tsd-signature-symbol">&gt;</span></h5>
+														</li>
+													</ul>
+													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span></h4>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="classes/projector.html" class="tsd-signature-type" data-tsd-kind="Class">Projector</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/e5fd0a0/src/atoms.ts#L279">atoms.ts:279</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>T</h4>
+								</li>
+								<li>
+									<h4>A1</h4>
+								</li>
+								<li>
+									<h4>A2</h4>
+								</li>
+								<li>
+									<h4>A3</h4>
+								</li>
+								<li>
+									<h4>A4</h4>
+								</li>
+								<li>
+									<h4>A5</h4>
+								</li>
+								<li>
+									<h4>A6</h4>
+								</li>
+								<li>
+									<h4>A7</h4>
+								</li>
+								<li>
+									<h4>A8</h4>
+								</li>
+								<li>
+									<h4>A9</h4>
+								</li>
+								<li>
+									<h4>A10</h4>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>atom1: <a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A1</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>atom2: <a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A2</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>atom3: <a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A3</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>atom4: <a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A4</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>atom5: <a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A5</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>atom6: <a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A6</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>atom7: <a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A7</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>atom8: <a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A8</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>atom9: <a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A9</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>atom10: <a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A10</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>projection: <span class="tsd-signature-symbol">(</span>a1<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A1</span><span class="tsd-signature-symbol">&gt;</span>, a2<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A2</span><span class="tsd-signature-symbol">&gt;</span>, a3<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A3</span><span class="tsd-signature-symbol">&gt;</span>, a4<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A4</span><span class="tsd-signature-symbol">&gt;</span>, a5<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A5</span><span class="tsd-signature-symbol">&gt;</span>, a6<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A6</span><span class="tsd-signature-symbol">&gt;</span>, a7<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A7</span><span class="tsd-signature-symbol">&gt;</span>, a8<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A8</span><span class="tsd-signature-symbol">&gt;</span>, a9<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A9</span><span class="tsd-signature-symbol">&gt;</span>, a10<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A10</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">T</span></h5>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter-signature">
+											<ul class="tsd-signatures tsd-kind-type-literal">
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>a1<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A1</span><span class="tsd-signature-symbol">&gt;</span>, a2<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A2</span><span class="tsd-signature-symbol">&gt;</span>, a3<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A3</span><span class="tsd-signature-symbol">&gt;</span>, a4<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A4</span><span class="tsd-signature-symbol">&gt;</span>, a5<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A5</span><span class="tsd-signature-symbol">&gt;</span>, a6<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A6</span><span class="tsd-signature-symbol">&gt;</span>, a7<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A7</span><span class="tsd-signature-symbol">&gt;</span>, a8<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A8</span><span class="tsd-signature-symbol">&gt;</span>, a9<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A9</span><span class="tsd-signature-symbol">&gt;</span>, a10<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A10</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span></li>
+											</ul>
+											<ul class="tsd-descriptions">
+												<li class="tsd-description">
+													<h4 class="tsd-parameters-title">Parameters</h4>
+													<ul class="tsd-parameters">
+														<li>
+															<h5>a1: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A1</span><span class="tsd-signature-symbol">&gt;</span></h5>
+														</li>
+														<li>
+															<h5>a2: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A2</span><span class="tsd-signature-symbol">&gt;</span></h5>
+														</li>
+														<li>
+															<h5>a3: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A3</span><span class="tsd-signature-symbol">&gt;</span></h5>
+														</li>
+														<li>
+															<h5>a4: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A4</span><span class="tsd-signature-symbol">&gt;</span></h5>
+														</li>
+														<li>
+															<h5>a5: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A5</span><span class="tsd-signature-symbol">&gt;</span></h5>
+														</li>
+														<li>
+															<h5>a6: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A6</span><span class="tsd-signature-symbol">&gt;</span></h5>
+														</li>
+														<li>
+															<h5>a7: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A7</span><span class="tsd-signature-symbol">&gt;</span></h5>
+														</li>
+														<li>
+															<h5>a8: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A8</span><span class="tsd-signature-symbol">&gt;</span></h5>
+														</li>
+														<li>
+															<h5>a9: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A9</span><span class="tsd-signature-symbol">&gt;</span></h5>
+														</li>
+														<li>
+															<h5>a10: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A10</span><span class="tsd-signature-symbol">&gt;</span></h5>
+														</li>
+													</ul>
+													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span></h4>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="classes/projector.html" class="tsd-signature-type" data-tsd-kind="Class">Projector</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/e5fd0a0/src/atoms.ts#L279">atoms.ts:279</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>T</h4>
+								</li>
+								<li>
+									<h4>A1</h4>
+								</li>
+								<li>
+									<h4>A2</h4>
+								</li>
+								<li>
+									<h4>A3</h4>
+								</li>
+								<li>
+									<h4>A4</h4>
+								</li>
+								<li>
+									<h4>A5</h4>
+								</li>
+								<li>
+									<h4>A6</h4>
+								</li>
+								<li>
+									<h4>A7</h4>
+								</li>
+								<li>
+									<h4>A8</h4>
+								</li>
+								<li>
+									<h4>A9</h4>
+								</li>
+								<li>
+									<h4>A10</h4>
+								</li>
+								<li>
+									<h4>A11</h4>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>atom1: <a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A1</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>atom2: <a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A2</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>atom3: <a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A3</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>atom4: <a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A4</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>atom5: <a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A5</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>atom6: <a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A6</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>atom7: <a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A7</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>atom8: <a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A8</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>atom9: <a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A9</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>atom10: <a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A10</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>atom11: <a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A11</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>projection: <span class="tsd-signature-symbol">(</span>a1<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A1</span><span class="tsd-signature-symbol">&gt;</span>, a2<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A2</span><span class="tsd-signature-symbol">&gt;</span>, a3<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A3</span><span class="tsd-signature-symbol">&gt;</span>, a4<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A4</span><span class="tsd-signature-symbol">&gt;</span>, a5<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A5</span><span class="tsd-signature-symbol">&gt;</span>, a6<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A6</span><span class="tsd-signature-symbol">&gt;</span>, a7<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A7</span><span class="tsd-signature-symbol">&gt;</span>, a8<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A8</span><span class="tsd-signature-symbol">&gt;</span>, a9<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A9</span><span class="tsd-signature-symbol">&gt;</span>, a10<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A10</span><span class="tsd-signature-symbol">&gt;</span>, a11<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A11</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">T</span></h5>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter-signature">
+											<ul class="tsd-signatures tsd-kind-type-literal">
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>a1<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A1</span><span class="tsd-signature-symbol">&gt;</span>, a2<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A2</span><span class="tsd-signature-symbol">&gt;</span>, a3<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A3</span><span class="tsd-signature-symbol">&gt;</span>, a4<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A4</span><span class="tsd-signature-symbol">&gt;</span>, a5<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A5</span><span class="tsd-signature-symbol">&gt;</span>, a6<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A6</span><span class="tsd-signature-symbol">&gt;</span>, a7<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A7</span><span class="tsd-signature-symbol">&gt;</span>, a8<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A8</span><span class="tsd-signature-symbol">&gt;</span>, a9<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A9</span><span class="tsd-signature-symbol">&gt;</span>, a10<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A10</span><span class="tsd-signature-symbol">&gt;</span>, a11<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A11</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span></li>
+											</ul>
+											<ul class="tsd-descriptions">
+												<li class="tsd-description">
+													<h4 class="tsd-parameters-title">Parameters</h4>
+													<ul class="tsd-parameters">
+														<li>
+															<h5>a1: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A1</span><span class="tsd-signature-symbol">&gt;</span></h5>
+														</li>
+														<li>
+															<h5>a2: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A2</span><span class="tsd-signature-symbol">&gt;</span></h5>
+														</li>
+														<li>
+															<h5>a3: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A3</span><span class="tsd-signature-symbol">&gt;</span></h5>
+														</li>
+														<li>
+															<h5>a4: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A4</span><span class="tsd-signature-symbol">&gt;</span></h5>
+														</li>
+														<li>
+															<h5>a5: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A5</span><span class="tsd-signature-symbol">&gt;</span></h5>
+														</li>
+														<li>
+															<h5>a6: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A6</span><span class="tsd-signature-symbol">&gt;</span></h5>
+														</li>
+														<li>
+															<h5>a7: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A7</span><span class="tsd-signature-symbol">&gt;</span></h5>
+														</li>
+														<li>
+															<h5>a8: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A8</span><span class="tsd-signature-symbol">&gt;</span></h5>
+														</li>
+														<li>
+															<h5>a9: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A9</span><span class="tsd-signature-symbol">&gt;</span></h5>
+														</li>
+														<li>
+															<h5>a10: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A10</span><span class="tsd-signature-symbol">&gt;</span></h5>
+														</li>
+														<li>
+															<h5>a11: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A11</span><span class="tsd-signature-symbol">&gt;</span></h5>
+														</li>
+													</ul>
+													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span></h4>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="classes/projector.html" class="tsd-signature-type" data-tsd-kind="Class">Projector</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/e5fd0a0/src/atoms.ts#L279">atoms.ts:279</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>T</h4>
+								</li>
+								<li>
+									<h4>A1</h4>
+								</li>
+								<li>
+									<h4>A2</h4>
+								</li>
+								<li>
+									<h4>A3</h4>
+								</li>
+								<li>
+									<h4>A4</h4>
+								</li>
+								<li>
+									<h4>A5</h4>
+								</li>
+								<li>
+									<h4>A6</h4>
+								</li>
+								<li>
+									<h4>A7</h4>
+								</li>
+								<li>
+									<h4>A8</h4>
+								</li>
+								<li>
+									<h4>A9</h4>
+								</li>
+								<li>
+									<h4>A10</h4>
+								</li>
+								<li>
+									<h4>A11</h4>
+								</li>
+								<li>
+									<h4>A12</h4>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>atom1: <a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A1</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>atom2: <a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A2</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>atom3: <a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A3</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>atom4: <a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A4</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>atom5: <a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A5</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>atom6: <a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A6</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>atom7: <a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A7</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>atom8: <a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A8</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>atom9: <a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A9</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>atom10: <a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A10</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>atom11: <a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A11</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>atom12: <a href="interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A12</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>projection: <span class="tsd-signature-symbol">(</span>a1<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A1</span><span class="tsd-signature-symbol">&gt;</span>, a2<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A2</span><span class="tsd-signature-symbol">&gt;</span>, a3<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A3</span><span class="tsd-signature-symbol">&gt;</span>, a4<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A4</span><span class="tsd-signature-symbol">&gt;</span>, a5<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A5</span><span class="tsd-signature-symbol">&gt;</span>, a6<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A6</span><span class="tsd-signature-symbol">&gt;</span>, a7<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A7</span><span class="tsd-signature-symbol">&gt;</span>, a8<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A8</span><span class="tsd-signature-symbol">&gt;</span>, a9<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A9</span><span class="tsd-signature-symbol">&gt;</span>, a10<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A10</span><span class="tsd-signature-symbol">&gt;</span>, a11<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A11</span><span class="tsd-signature-symbol">&gt;</span>, a12<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A12</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">T</span></h5>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter-signature">
+											<ul class="tsd-signatures tsd-kind-type-literal">
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>a1<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A1</span><span class="tsd-signature-symbol">&gt;</span>, a2<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A2</span><span class="tsd-signature-symbol">&gt;</span>, a3<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A3</span><span class="tsd-signature-symbol">&gt;</span>, a4<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A4</span><span class="tsd-signature-symbol">&gt;</span>, a5<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A5</span><span class="tsd-signature-symbol">&gt;</span>, a6<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A6</span><span class="tsd-signature-symbol">&gt;</span>, a7<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A7</span><span class="tsd-signature-symbol">&gt;</span>, a8<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A8</span><span class="tsd-signature-symbol">&gt;</span>, a9<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A9</span><span class="tsd-signature-symbol">&gt;</span>, a10<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A10</span><span class="tsd-signature-symbol">&gt;</span>, a11<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A11</span><span class="tsd-signature-symbol">&gt;</span>, a12<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A12</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span></li>
+											</ul>
+											<ul class="tsd-descriptions">
+												<li class="tsd-description">
+													<h4 class="tsd-parameters-title">Parameters</h4>
+													<ul class="tsd-parameters">
+														<li>
+															<h5>a1: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A1</span><span class="tsd-signature-symbol">&gt;</span></h5>
+														</li>
+														<li>
+															<h5>a2: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A2</span><span class="tsd-signature-symbol">&gt;</span></h5>
+														</li>
+														<li>
+															<h5>a3: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A3</span><span class="tsd-signature-symbol">&gt;</span></h5>
+														</li>
+														<li>
+															<h5>a4: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A4</span><span class="tsd-signature-symbol">&gt;</span></h5>
+														</li>
+														<li>
+															<h5>a5: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A5</span><span class="tsd-signature-symbol">&gt;</span></h5>
+														</li>
+														<li>
+															<h5>a6: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A6</span><span class="tsd-signature-symbol">&gt;</span></h5>
+														</li>
+														<li>
+															<h5>a7: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A7</span><span class="tsd-signature-symbol">&gt;</span></h5>
+														</li>
+														<li>
+															<h5>a8: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A8</span><span class="tsd-signature-symbol">&gt;</span></h5>
+														</li>
+														<li>
+															<h5>a9: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A9</span><span class="tsd-signature-symbol">&gt;</span></h5>
+														</li>
+														<li>
+															<h5>a10: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A10</span><span class="tsd-signature-symbol">&gt;</span></h5>
+														</li>
+														<li>
+															<h5>a11: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A11</span><span class="tsd-signature-symbol">&gt;</span></h5>
+														</li>
+														<li>
+															<h5>a12: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A12</span><span class="tsd-signature-symbol">&gt;</span></h5>
+														</li>
+													</ul>
+													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span></h4>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="classes/projector.html" class="tsd-signature-type" data-tsd-kind="Class">Projector</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -253,14 +1457,56 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/1050347/src/atoms.ts#L13">atoms.ts:13</a></li>
+									<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/e5fd0a0/src/atoms.ts#L65">atoms.ts:65</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>readonlyAtom will create a new ReadonlyAtom instance with the provided
-									initial value and start function.</p>
+										initial value and start function. Readonly atoms are atoms that do not allow
+										users to set or modify values, just read; however, this does not mean their
+										value has to be static. If only an initialValue is provided then the returned
+										readonly atom will have a static value, however if you also pass in a start
+										function, this will receive a set function as an argument and from here you
+										can do whatever you might need, such as running a timeout or interval or
+									any other mechanism you need to periodically update the atoms value.</p>
 								</div>
+								<a href="#examples" id="examples" style="color: inherit; text-decoration: none;">
+									<h3>Examples</h3>
+								</a>
+								<p>A really common example case is a clock:</p>
+								<pre><code class="language-typescript"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">clock</span><span style="color: #000000"> = </span><span style="color: #795E26">readonlyAtom</span><span style="color: #000000">(</span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #267F99">Date</span><span style="color: #000000">(), </span><span style="color: #001080">set</span><span style="color: #000000"> </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  </span><span style="color: #795E26">set</span><span style="color: #000000">(</span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #267F99">Date</span><span style="color: #000000">());</span>
+
+<span style="color: #000000">  </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">interval</span><span style="color: #000000"> = </span><span style="color: #795E26">setInterval</span><span style="color: #000000">(() </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #795E26">set</span><span style="color: #000000">(</span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #267F99">Date</span><span style="color: #000000">());</span>
+<span style="color: #000000">  }, </span><span style="color: #098658">1000</span><span style="color: #000000">);</span>
+
+<span style="color: #000000">  </span><span style="color: #AF00DB">return</span><span style="color: #000000"> () </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #795E26">clearInterval</span><span style="color: #000000">(</span><span style="color: #001080">interval</span><span style="color: #000000">);</span>
+<span style="color: #000000">  };</span>
+<span style="color: #000000">});</span>
+</code></pre>
+								<p>See it on <a href="https://codepen.io/bbuck/pen/dyNBQev">CodePen</a>.</p>
+								<p>Another possible example would be to handle other values set by something
+									else, such as the window scroll event, which can be debounced to prevent
+								unnecessary spam.</p>
+								<pre><code class="language-typescript"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">scrollTop</span><span style="color: #000000"> = </span><span style="color: #795E26">readonlyAtom</span><span style="color: #000000">(</span><span style="color: #001080">scrollContainer</span><span style="color: #000000">.</span><span style="color: #001080">scrollTop</span><span style="color: #000000">, (</span><span style="color: #001080">set</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  </span><span style="color: #795E26">set</span><span style="color: #000000">(</span><span style="color: #001080">scrollContainer</span><span style="color: #000000">.</span><span style="color: #001080">scrollTop</span><span style="color: #000000">);</span>
+
+<span style="color: #000000">  </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">onScroll</span><span style="color: #000000"> = </span><span style="color: #795E26">throttle</span><span style="color: #000000">(</span>
+<span style="color: #000000">    () </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">      </span><span style="color: #795E26">set</span><span style="color: #000000">(</span><span style="color: #001080">scrollContainer</span><span style="color: #000000">.</span><span style="color: #001080">scrollTop</span><span style="color: #000000">);</span>
+<span style="color: #000000">    }, </span><span style="color: #098658">200</span><span style="color: #000000">, </span><span style="color: #0000FF">true</span><span style="color: #000000">);</span>
+
+<span style="color: #000000">  </span><span style="color: #001080">scrollContainer</span><span style="color: #000000">.</span><span style="color: #795E26">addEventListener</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;scroll&quot;</span><span style="color: #000000">, </span><span style="color: #001080">onScroll</span><span style="color: #000000">);</span>
+
+<span style="color: #000000">  () </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #001080">scrollContainer</span><span style="color: #000000">.</span><span style="color: #795E26">removeEventListener</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;scroll&quot;</span><span style="color: #000000">, </span><span style="color: #001080">onScroll</span><span style="color: #000000">);</span>
+<span style="color: #000000">  };</span>
+<span style="color: #000000">});</span>
+</code></pre>
+								<p>See it on <a href="https://codepen.io/bbuck/pen/wvgLQQY">CodePen</a>.</p>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -308,10 +1554,19 @@
 						<a href="classes/baseatom.html" class="tsd-kind-icon">Base<wbr>Atom</a>
 					</li>
 					<li class=" tsd-kind-class tsd-has-type-parameter">
+						<a href="classes/projector.html" class="tsd-kind-icon">Projector</a>
+					</li>
+					<li class=" tsd-kind-class tsd-has-type-parameter">
 						<a href="classes/readonlyatom.html" class="tsd-kind-icon">Readonly<wbr>Atom</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-has-type-parameter">
+						<a href="interfaces/atomupdatefunction.html" class="tsd-kind-icon">Atom<wbr>Update<wbr>Function</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
 						<a href="interfaces/iatom.html" class="tsd-kind-icon">IAtom</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+						<a href="modules.html#atomupdater" class="tsd-kind-icon">Atom<wbr>Updater</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
 						<a href="modules.html#readonlyatomsetter" class="tsd-kind-icon">Readonly<wbr>Atom<wbr>Setter</a>
@@ -321,6 +1576,9 @@
 					</li>
 					<li class=" tsd-kind-function tsd-has-type-parameter">
 						<a href="modules.html#atom" class="tsd-kind-icon">atom</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="modules.html#projector" class="tsd-kind-icon">projector</a>
 					</li>
 					<li class=" tsd-kind-function tsd-has-type-parameter">
 						<a href="modules.html#readonlyatom" class="tsd-kind-icon">readonly<wbr>Atom</a>
@@ -346,6 +1604,9 @@
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
 			</ul>
 		</div>
 	</div>

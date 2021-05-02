@@ -5,6 +5,7 @@
 	"main": "dist/index.js",
 	"scripts": {
 		"test": "jest",
+		"test:watch": "jest --watch",
 		"compile": "tsc",
 		"docs": "typedoc --out docs src/index.ts",
 		"run-pre-commit": "tsc --noEmit && lint-staged",

@@ -19,14 +19,14 @@
 	},
 	"keywords": [
 		"nuka",
+		"nuka/state",
 		"state",
 		"redux",
 		"recoil",
 		"atom",
 		"product",
 		"projector",
-		"reactor",
-		"computer"
+		"reactor"
 	],
 	"files": [
 		"dist",

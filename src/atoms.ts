@@ -34,15 +34,14 @@ import Projector, { ProjectionFunction } from './Projector';
  * See it on [CodePen](https://codepen.io/bbuck/pen/dyNBQev).
  *
  * Another possible example would be to handle other values set by something
- * else, such as the window scroll event, which can be debounced to prevent
+ * else, such as the window scroll event, which can be throttled to prevent
  * unnecessary spam.
  *
  * ```typescript
  * const scrollTop = readonlyAtom(scrollContainer.scrollTop, (set) => {
  *   set(scrollContainer.scrollTop);
  *
- *   const onScroll = throttle(
- *     () => {
+ *   const onScroll = throttle(() => {
  *       set(scrollContainer.scrollTop);
  *     }, 200, true);
  *

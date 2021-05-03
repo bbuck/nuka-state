@@ -61,41 +61,33 @@ describe('ReadonlyAtom', () => {
 				});
 
 				expect(atom.value).toEqual(10);
-
-				await delay(100);
-
+				await delay(50);
 				expect(atom.value).toEqual(10);
 			});
 
 			it('updates the value when there is a subscriber', async () => {
 				const atom = readonlyAtom(10, set => {
-					setTimeout(() => set(30), 200);
+					setTimeout(() => set(30), 50);
 
 					return noOp;
 				});
 
 				expect(atom.value).toEqual(10);
-
 				atom.subscribe(noOp);
-
-				await delay(400);
-
+				await delay(75);
 				expect(atom.value).toEqual(30);
 			});
 
 			it("updates the value when when it's live", async () => {
 				const atom = readonlyAtom(10, set => {
-					setTimeout(() => set(30), 200);
+					setTimeout(() => set(30), 40);
 
 					return noOp;
 				});
 
 				expect(atom.value).toEqual(10);
-
 				atom.setLive(true);
-
-				await delay(400);
-
+				await delay(75);
 				expect(atom.value).toEqual(30);
 			});
 
@@ -103,22 +95,17 @@ describe('ReadonlyAtom', () => {
 				const atom = readonlyAtom(10, set => {
 					const interval = setInterval(() => {
 						set(atom.value + 10);
-					}, 200);
+					}, 50);
 
 					return () => clearInterval(interval);
 				});
 
 				expect(atom.value).toEqual(10);
-
 				atom.subscribe(noOp);
-
-				await delay(300);
-
+				await delay(75);
 				expect(atom.value).toEqual(20);
 				atom.unsubscribe(noOp);
-
-				await delay(200);
-
+				await delay(50);
 				expect(atom.value).toEqual(20);
 			});
 
@@ -126,22 +113,17 @@ describe('ReadonlyAtom', () => {
 				const atom = readonlyAtom(10, set => {
 					const interval = setInterval(() => {
 						set(atom.value + 10);
-					}, 200);
+					}, 50);
 
 					return () => clearInterval(interval);
 				});
 
 				expect(atom.value).toEqual(10);
-
 				atom.setLive(true);
-
-				await delay(300);
-
+				await delay(75);
 				expect(atom.value).toEqual(20);
 				atom.setLive(false);
-
-				await delay(200);
-
+				await delay(50);
 				expect(atom.value).toEqual(20);
 			});
 
@@ -149,7 +131,7 @@ describe('ReadonlyAtom', () => {
 				const atom = readonlyAtom(10, set => {
 					const interval = setInterval(() => {
 						set(atom.value + 10);
-					}, 200);
+					}, 50);
 
 					return () => clearInterval(interval);
 				});
@@ -157,16 +139,46 @@ describe('ReadonlyAtom', () => {
 				expect(atom.value).toEqual(10);
 				atom.setLive(true);
 				atom.subscribe(noOp);
-
-				await delay(250);
-
+				await delay(75);
 				expect(atom.value).toEqual(20);
 				atom.unsubscribe(noOp);
-
-				await delay(200);
-
+				await delay(50);
 				expect(atom.value).toEqual(30);
 				atom.setLive(false);
+			});
+
+			it('marking as not live while subscribed does not stop updates', async () => {
+				const atom = readonlyAtom(10, set => {
+					const interval = setInterval(() => {
+						set(atom.value + 10);
+					}, 50);
+
+					return () => clearInterval(interval);
+				});
+
+				expect(atom.value).toEqual(10);
+				atom.setLive(true);
+				atom.subscribe(noOp);
+				await delay(75);
+				expect(atom.value).toEqual(20);
+				atom.setLive(false);
+				await delay(50);
+				expect(atom.value).toEqual(30);
+				atom.unsubscribe(noOp);
+			});
+
+			it('does not update without being live or having subscribers', async () => {
+				const atom = readonlyAtom(10, set => {
+					const interval = setInterval(() => {
+						set(atom.value + 10);
+					}, 50);
+
+					return () => clearInterval(interval);
+				});
+
+				expect(atom.value).toEqual(10);
+				await delay(75);
+				expect(atom.value).toEqual(10);
 			});
 		});
 	});

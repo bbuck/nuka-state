@@ -51,7 +51,7 @@ export default class Atom<T> extends BaseAtom<T> {
 	 */
 	#updaterQueue: AtomUpdateFunction<T>[];
 
-	/**
+	/**P
 	 * The update timeout, this is tracked since setting an atom's value will
 	 * clear future updates so must cancel the asynchronous update timer.
 	 */

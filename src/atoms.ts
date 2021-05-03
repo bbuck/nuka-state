@@ -18,7 +18,7 @@ import Projector, { ProjectionFunction } from './Projector';
  * A really common example case is a clock:
  *
  * ```typescript
- * const clock = readonlyAtom(new Date(), set => {
+ * const clock = readonlyAtom(new Date(), (set) => {
  *   set(new Date());
  *
  *   const interval = setInterval(() => {
@@ -29,6 +29,12 @@ import Projector, { ProjectionFunction } from './Projector';
  *     clearInterval(interval);
  *   };
  * });
+ *
+ * const dateTimeDisplay = document.getElementById("date-time");
+ *
+ * clock.subscribe((atom) => {
+ *   dateTimeDisplay.textContent = atom.value.toLocaleString();
+ * });
  * ```
  *
  * See it on [CodePen](https://codepen.io/bbuck/pen/dyNBQev).
@@ -38,18 +44,29 @@ import Projector, { ProjectionFunction } from './Projector';
  * unnecessary spam.
  *
  * ```typescript
+ * const scrollContainer = document.body;
  * const scrollTop = readonlyAtom(scrollContainer.scrollTop, (set) => {
  *   set(scrollContainer.scrollTop);
  *
- *   const onScroll = throttle(() => {
+ *   const onScroll = throttle(
+ *     () => {
  *       set(scrollContainer.scrollTop);
- *     }, 200, true);
+ *     },
+ *     200,
+ *     true
+ *   );
  *
  *   scrollContainer.addEventListener("scroll", onScroll);
  *
  *   () => {
  *     scrollContainer.removeEventListener("scroll", onScroll);
  *   };
+ * });
+ *
+ * const display = document.getElementById("scroll-value");
+ *
+ * scrollTop.subscribe((atom) => {
+ *   display.textContent = Math.round(atom.value);
  * });
  * ```
  *
@@ -80,14 +97,16 @@ export const readonlyAtom = <T>(initialValue: T, start?: ReadonlyAtomStarter<T>)
  * ```typescript
  * const counter = atom(0);
  *
- * const countDisplay = document.querySelector('#count-display');
- * counter.subscribe(atom => {
+ * const countDisplay = document.getElementById("display-counter");
+ * counter.subscribe((atom) => {
  *   countDisplay.textContent = `Current count: ${atom.value}`;
  * });
  *
- * const incrementButton = document.querySelector('#increment-button');
- * incrementButton.addEventListener('click', () => counter.update(n => n + 1));
+ * const incrementButton = document.getElementById("increment-counter");
+ * incrementButton.addEventListener("click", () => counter.update((n) => n + 1));
  * ```
+ *
+ * See it on [CodePen](https://codepen.io/bbuck/pen/yLgwBGL).
  *
  * @param value The initial value of the atom.
  * @returns A new atom containing the initial value ready for use.
@@ -535,29 +554,31 @@ interface ProjectorCreator {
  * const counter1 = atom(0);
  * const counter2 = atom(0);
  *
- * const display1 = document.getElementById('display-counter-1');
- * counter1.subscribe(count => {
+ * const display1 = document.getElementById("display-counter-1");
+ * counter1.subscribe((count) => {
  *   display1.textContent = `Current count: ${count.value}`;
  * });
  *
- * const incr1 = document.getElementById('increment-counter-1');
- * incr1.addEventListener('click', () => counter1.update(n => n + 1));
+ * const incr1 = document.getElementById("increment-counter-1");
+ * incr1.addEventListener("click", () => counter1.update((n) => n + 1));
  *
- * const display2 = document.getElementById('display-counter-2');
- * counter2.subscribe(count => {
- *   display1.textContent = `Current count: ${count.value}`;
+ * const display2 = document.getElementById("display-counter-2");
+ * counter2.subscribe((count) => {
+ *   display2.textContent = `Current count: ${count.value}`;
  * });
  *
- * const incr2 = document.getElementById('increment-counter-2');
- * incr2.addEventListener('click', () => counter2.update(n => n + 1));
+ * const incr2 = document.getElementById("increment-counter-2");
+ * incr2.addEventListener("click", () => counter2.update((n) => n + 1));
  *
  * const sum = projector(counter1, counter2, (a, b) => a + b);
  *
- * const sumDisplay = document.getElementById('display-sum');
- * sum.subscribe(sum => {
+ * const sumDisplay = document.getElementById("display-sum");
+ * sum.subscribe((sum) => {
  *   sumDisplay.textContent = `Total count: ${sum.value}`;
  * });
  * ```
+ *
+ * See it on [CodePen](https://codepen.io/bbuck/pen/QWdeMpe).
  *
  * Projectors don't always have to be used with multiple atoms, somtimes you
  * just want to be able to have and update data from a single atom in a
@@ -572,20 +593,25 @@ interface ProjectorCreator {
  * const fullName = projector(user, u => `${u.firstName} ${u.lastName}`);
  *
  * const firstNameInput = document.getElementById('first-name');
+ * firstNameInput.value = user.value.firstName;
  * firstNameInput.addEventListener('input', event => {
  *   user.update(oldUser => ({ ...oldUser, firstName: event.target.value }));
  * });
  *
  * const lastNameInput = document.getElementById('last-name');
+ * lastNameInput.value = user.value.lastName;
  * lastNameInput.addEventListener('input', event => {
  *   user.update(oldUser => ({ ...oldUser, lastName: event.target.value }));
  * });
  *
- * const fullNameDisplay = document.getElementById('full-name-display');
+ * const fullNameDisplay = document.getElementById('display-full-name');
+ * fullNameDisplay.textContent = fullName.value;
  * fullName.subscribe(name => {
  *   fullNameDisplay.textContent = name.value;
  * });
  * ```
+ *
+ * See it on [CodePen](https://codepen.io/bbuck/pen/gOgVxXQ)
  *
  * A simple and clean way to control how data is rendered, just modify `fullName`'s
  * projection function to, say, change the computed value to `last, first`

@@ -45,26 +45,26 @@ export interface ProjectionFunction<T> {
  * const counter1 = atom(0);
  * const counter2 = atom(0);
  *
- * const display1 = document.getElementById('display-counter-1');
- * counter1.subscribe(count => {
+ * const display1 = document.getElementById("display-counter-1");
+ * counter1.subscribe((count) => {
  *   display1.textContent = `Current count: ${count.value}`;
  * });
  *
- * const incr1 = document.getElementById('increment-counter-1');
- * incr1.addEventListener('click', () => counter1.update(n => n + 1));
+ * const incr1 = document.getElementById("increment-counter-1");
+ * incr1.addEventListener("click", () => counter1.update((n) => n + 1));
  *
- * const display2 = document.getElementById('display-counter-2');
- * counter2.subscribe(count => {
- *   display1.textContent = `Current count: ${count.value}`;
+ * const display2 = document.getElementById("display-counter-2");
+ * counter2.subscribe((count) => {
+ *   display2.textContent = `Current count: ${count.value}`;
  * });
  *
- * const incr2 = document.getElementById('increment-counter-2');
- * incr2.addEventListener('click', () => counter2.update(n => n + 1));
+ * const incr2 = document.getElementById("increment-counter-2");
+ * incr2.addEventListener("click", () => counter2.update((n) => n + 1));
  *
  * const sum = projector(counter1, counter2, (a, b) => a + b);
  *
- * const sumDisplay = document.getElementById('display-sum');
- * sum.subscribe(sum => {
+ * const sumDisplay = document.getElementById("display-sum");
+ * sum.subscribe((sum) => {
  *   sumDisplay.textContent = `Total count: ${sum.value}`;
  * });
  * ```
@@ -82,16 +82,19 @@ export interface ProjectionFunction<T> {
  * const fullName = projector(user, u => `${u.firstName} ${u.lastName}`);
  *
  * const firstNameInput = document.getElementById('first-name');
+ * firstNameInput.value = user.value.firstName;
  * firstNameInput.addEventListener('input', event => {
  *   user.update(oldUser => ({ ...oldUser, firstName: event.target.value }));
  * });
  *
  * const lastNameInput = document.getElementById('last-name');
+ * lastNameInput.value = user.value.lastName;
  * lastNameInput.addEventListener('input', event => {
  *   user.update(oldUser => ({ ...oldUser, lastName: event.target.value }));
  * });
  *
- * const fullNameDisplay = document.getElementById('full-name-display');
+ * const fullNameDisplay = document.getElementById('display-full-name');
+ * fullNameDisplay.textContent = fullName.value;
  * fullName.subscribe(name => {
  *   fullNameDisplay.textContent = name.value;
  * });

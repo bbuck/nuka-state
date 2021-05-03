@@ -122,8 +122,8 @@
 					lifetime you use the atom instead of having it constatly live.</p>
 					<dl class="tsd-comment-tags">
 						<dt>internal</dt>
-						<dd><p>Prefer <a href="../modules.html#readonlyatom">readonlyAtom</a> to manually creating instances of
-							this class.</p>
+						<dd><p><strong>DO NOT USE</strong> Prefer using the <a href="../modules.html#readonlyatom">readonlyAtom</a> factory function
+							to manually creating instances of this class.</p>
 						</dd>
 					</dl>
 				</div>
@@ -209,7 +209,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides <a href="baseatom.html">BaseAtom</a>.<a href="baseatom.html#constructor">constructor</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/e5fd0a0/src/ReadonlyAtom.ts#L124">ReadonlyAtom.ts:124</a></li>
+									<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/4985292/src/ReadonlyAtom.ts#L147">ReadonlyAtom.ts:147</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -240,9 +240,18 @@
 					<div class="tsd-signature tsd-kind-icon">#live<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/e5fd0a0/src/ReadonlyAtom.ts#L116">ReadonlyAtom.ts:116</a></li>
+							<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/4985292/src/ReadonlyAtom.ts#L139">ReadonlyAtom.ts:139</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Live will determine if the readonly atom should continue running without
+								subscribers. By default readonly atoms are not live, but they can be
+								set live with <code>setLive</code> function. If they are set live than start will
+								be called and they will continue to run with or without subscribers until
+							they are marked as no longer live with a follow up call to <code>setLive</code>.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
 					<a name="_start" class="tsd-anchor"></a>
@@ -250,9 +259,17 @@
 					<div class="tsd-signature tsd-kind-icon">#start<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><a href="../modules.html#readonlyatomstarter" class="tsd-signature-type" data-tsd-kind="Type alias">ReadonlyAtomStarter</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/e5fd0a0/src/ReadonlyAtom.ts#L114">ReadonlyAtom.ts:114</a></li>
+							<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/4985292/src/ReadonlyAtom.ts#L120">ReadonlyAtom.ts:120</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The start function of the readonly atom. This will be called when a subscriber
+								subscribes and should kick off any timeout/interval/fetch/etc... that will
+								update the subscriber. This value is optional though, so it may be undefined
+							in which case there is not start function to call.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
 					<a name="_stop" class="tsd-anchor"></a>
@@ -260,9 +277,19 @@
 					<div class="tsd-signature tsd-kind-icon">#stop<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">VoidFunction</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/e5fd0a0/src/ReadonlyAtom.ts#L115">ReadonlyAtom.ts:115</a></li>
+							<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/4985292/src/ReadonlyAtom.ts#L130">ReadonlyAtom.ts:130</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>When the readonly atom has a subscriber and start (if present) is called
+								then this is the return value of the start function. It is expected to
+								stop any updates that are currently pending (if possible) and will be
+								called when the last subscriber unsubscribes. This would tyipcally complement
+								whatever start does, say by <code>clearTimeout</code> or <code>clearInterval</code> or anything
+							else that was set up.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-private">
 					<a name="_subscribers" class="tsd-anchor"></a>
@@ -271,7 +298,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="baseatom.html">BaseAtom</a>.<a href="baseatom.html#_subscribers">#subscribers</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/e5fd0a0/src/BaseAtom.ts#L32">BaseAtom.ts:32</a></li>
+							<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/4985292/src/BaseAtom.ts#L34">BaseAtom.ts:34</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -293,7 +320,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="baseatom.html">BaseAtom</a>.<a href="baseatom.html#_value">#value</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/e5fd0a0/src/BaseAtom.ts#L25">BaseAtom.ts:25</a></li>
+							<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/4985292/src/BaseAtom.ts#L27">BaseAtom.ts:27</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -321,7 +348,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/e5fd0a0/src/BaseAtom.ts#L43">BaseAtom.ts:43</a></li>
+									<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/4985292/src/BaseAtom.ts#L50">BaseAtom.ts:50</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -348,7 +375,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="baseatom.html">BaseAtom</a>.<a href="baseatom.html#hassubscribers">hasSubscribers</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/e5fd0a0/src/BaseAtom.ts#L83">BaseAtom.ts:83</a></li>
+									<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/4985292/src/BaseAtom.ts#L90">BaseAtom.ts:90</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -374,7 +401,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="baseatom.html">BaseAtom</a>.<a href="baseatom.html#notifysubscribers">notifySubscribers</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/e5fd0a0/src/BaseAtom.ts#L91">BaseAtom.ts:91</a></li>
+									<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/4985292/src/BaseAtom.ts#L98">BaseAtom.ts:98</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -397,7 +424,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/e5fd0a0/src/ReadonlyAtom.ts#L141">ReadonlyAtom.ts:141</a></li>
+									<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/4985292/src/ReadonlyAtom.ts#L164">ReadonlyAtom.ts:164</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -433,7 +460,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="baseatom.html">BaseAtom</a>.<a href="baseatom.html#setvalue">setValue</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/e5fd0a0/src/BaseAtom.ts#L101">BaseAtom.ts:101</a></li>
+									<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/4985292/src/BaseAtom.ts#L108">BaseAtom.ts:108</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -466,7 +493,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/e5fd0a0/src/ReadonlyAtom.ts#L211">ReadonlyAtom.ts:211</a></li>
+									<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/4985292/src/ReadonlyAtom.ts#L234">ReadonlyAtom.ts:234</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -500,7 +527,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides <a href="baseatom.html">BaseAtom</a>.<a href="baseatom.html#subscribe">subscribe</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/e5fd0a0/src/ReadonlyAtom.ts#L167">ReadonlyAtom.ts:167</a></li>
+									<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/4985292/src/ReadonlyAtom.ts#L190">ReadonlyAtom.ts:190</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -538,7 +565,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides <a href="baseatom.html">BaseAtom</a>.<a href="baseatom.html#unsubscribe">unsubscribe</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/e5fd0a0/src/ReadonlyAtom.ts#L191">ReadonlyAtom.ts:191</a></li>
+									<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/4985292/src/ReadonlyAtom.ts#L214">ReadonlyAtom.ts:214</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -575,7 +602,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/e5fd0a0/src/ReadonlyAtom.ts#L118">ReadonlyAtom.ts:118</a></li>
+									<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/4985292/src/ReadonlyAtom.ts#L141">ReadonlyAtom.ts:141</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -600,6 +627,9 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+					<li class=" tsd-kind-class tsd-has-type-parameter">
+						<a href="atom.html" class="tsd-kind-icon">Atom</a>
+					</li>
 					<li class=" tsd-kind-class tsd-has-type-parameter">
 						<a href="baseatom.html" class="tsd-kind-icon">Base<wbr>Atom</a>
 					</li>
@@ -666,6 +696,9 @@
 					<li class=" tsd-kind-interface tsd-has-type-parameter">
 						<a href="../interfaces/iatom.html" class="tsd-kind-icon">IAtom</a>
 					</li>
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
+						<a href="../interfaces/projectionfunction.html" class="tsd-kind-icon">Projection<wbr>Function</a>
+					</li>
 					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
 						<a href="../modules.html#atomupdater" class="tsd-kind-icon">Atom<wbr>Updater</a>
 					</li>
@@ -702,6 +735,9 @@
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected method</span></li>

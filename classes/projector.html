@@ -74,14 +74,87 @@
 							It will also subscribe to all the input atom-like objects so that if any of
 						their values are updated the projection function will run again.</p>
 					</div>
+					<p>Projectors act like atoms, so they can be consumed by other projectors or
+					other atom-consuming API functions.</p>
 					<p>There is a slight optimization that Projector will do, it will try and sniff
 						if any input atom-like objects are a ReadonlyAtom, and if so it will only
 						subscribe to them if there are subscribers to the Projector so that the
 					readonly atom isn&#39;t running when nothings is subscribed.</p>
+					<a href="#note" id="note" style="color: inherit; text-decoration: none;">
+						<h4>NOTE</h4>
+					</a>
+					<p>Due to the fact that projectors subscribe to the atoms they are created
+						with, if you wish to stop using a projector (have it fall out of scope) you
+						must manually call <code>unsubscribeFromAtoms</code> or else the projector will not be
+						garbage collected as it&#39;s subscription function to all atoms will keep it in
+						memory. If the atoms that thep projector was created for/with will also fall
+					out of scope this is not required.</p>
+					<a href="#examples" id="examples" style="color: inherit; text-decoration: none;">
+						<h3>Examples</h3>
+					</a>
+					<p>Probably the simpleist example of a projector is summing up multiple count
+					atoms.</p>
+					<pre><code class="language-typescript"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">counter1</span><span style="color: #000000"> = </span><span style="color: #795E26">atom</span><span style="color: #000000">(</span><span style="color: #098658">0</span><span style="color: #000000">);</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">counter2</span><span style="color: #000000"> = </span><span style="color: #795E26">atom</span><span style="color: #000000">(</span><span style="color: #098658">0</span><span style="color: #000000">);</span>
+
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">display1</span><span style="color: #000000"> = </span><span style="color: #001080">document</span><span style="color: #000000">.</span><span style="color: #795E26">getElementById</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;display-counter-1&quot;</span><span style="color: #000000">);</span>
+<span style="color: #001080">counter1</span><span style="color: #000000">.</span><span style="color: #795E26">subscribe</span><span style="color: #000000">((</span><span style="color: #001080">count</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  </span><span style="color: #001080">display1</span><span style="color: #000000">.</span><span style="color: #001080">textContent</span><span style="color: #000000"> = </span><span style="color: #A31515">`Current count: </span><span style="color: #0000FF">${</span><span style="color: #001080">count</span><span style="color: #000000FF">.</span><span style="color: #001080">value</span><span style="color: #0000FF">}</span><span style="color: #A31515">`</span><span style="color: #000000">;</span>
+<span style="color: #000000">});</span>
+
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">incr1</span><span style="color: #000000"> = </span><span style="color: #001080">document</span><span style="color: #000000">.</span><span style="color: #795E26">getElementById</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;increment-counter-1&quot;</span><span style="color: #000000">);</span>
+<span style="color: #001080">incr1</span><span style="color: #000000">.</span><span style="color: #795E26">addEventListener</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;click&quot;</span><span style="color: #000000">, () </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> </span><span style="color: #001080">counter1</span><span style="color: #000000">.</span><span style="color: #795E26">update</span><span style="color: #000000">((</span><span style="color: #001080">n</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> </span><span style="color: #001080">n</span><span style="color: #000000"> + </span><span style="color: #098658">1</span><span style="color: #000000">));</span>
+
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">display2</span><span style="color: #000000"> = </span><span style="color: #001080">document</span><span style="color: #000000">.</span><span style="color: #795E26">getElementById</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;display-counter-2&quot;</span><span style="color: #000000">);</span>
+<span style="color: #001080">counter2</span><span style="color: #000000">.</span><span style="color: #795E26">subscribe</span><span style="color: #000000">((</span><span style="color: #001080">count</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  </span><span style="color: #001080">display2</span><span style="color: #000000">.</span><span style="color: #001080">textContent</span><span style="color: #000000"> = </span><span style="color: #A31515">`Current count: </span><span style="color: #0000FF">${</span><span style="color: #001080">count</span><span style="color: #000000FF">.</span><span style="color: #001080">value</span><span style="color: #0000FF">}</span><span style="color: #A31515">`</span><span style="color: #000000">;</span>
+<span style="color: #000000">});</span>
+
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">incr2</span><span style="color: #000000"> = </span><span style="color: #001080">document</span><span style="color: #000000">.</span><span style="color: #795E26">getElementById</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;increment-counter-2&quot;</span><span style="color: #000000">);</span>
+<span style="color: #001080">incr2</span><span style="color: #000000">.</span><span style="color: #795E26">addEventListener</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;click&quot;</span><span style="color: #000000">, () </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> </span><span style="color: #001080">counter2</span><span style="color: #000000">.</span><span style="color: #795E26">update</span><span style="color: #000000">((</span><span style="color: #001080">n</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> </span><span style="color: #001080">n</span><span style="color: #000000"> + </span><span style="color: #098658">1</span><span style="color: #000000">));</span>
+
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">sum</span><span style="color: #000000"> = </span><span style="color: #795E26">projector</span><span style="color: #000000">(</span><span style="color: #001080">counter1</span><span style="color: #000000">, </span><span style="color: #001080">counter2</span><span style="color: #000000">, (</span><span style="color: #001080">a</span><span style="color: #000000">, </span><span style="color: #001080">b</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> </span><span style="color: #001080">a</span><span style="color: #000000"> + </span><span style="color: #001080">b</span><span style="color: #000000">);</span>
+
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">sumDisplay</span><span style="color: #000000"> = </span><span style="color: #001080">document</span><span style="color: #000000">.</span><span style="color: #795E26">getElementById</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;display-sum&quot;</span><span style="color: #000000">);</span>
+<span style="color: #001080">sum</span><span style="color: #000000">.</span><span style="color: #795E26">subscribe</span><span style="color: #000000">((</span><span style="color: #001080">sum</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  </span><span style="color: #001080">sumDisplay</span><span style="color: #000000">.</span><span style="color: #001080">textContent</span><span style="color: #000000"> = </span><span style="color: #A31515">`Total count: </span><span style="color: #0000FF">${</span><span style="color: #001080">sum</span><span style="color: #000000FF">.</span><span style="color: #001080">value</span><span style="color: #0000FF">}</span><span style="color: #A31515">`</span><span style="color: #000000">;</span>
+<span style="color: #000000">});</span>
+</code></pre>
+					<p>Projectors don&#39;t always have to be used with multiple atoms, somtimes you
+						just want to be able to have and update data from a single atom in a
+					different way. Like showing the full name for a user.</p>
+					<pre><code class="language-typescript"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">user</span><span style="color: #000000"> = </span><span style="color: #795E26">atom</span><span style="color: #000000">({</span>
+<span style="color: #000000">  </span><span style="color: #001080">firstName:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;Peter&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #001080">lastName:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;Programmer&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">});</span>
+
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">fullName</span><span style="color: #000000"> = </span><span style="color: #795E26">projector</span><span style="color: #000000">(</span><span style="color: #001080">user</span><span style="color: #000000">, </span><span style="color: #001080">u</span><span style="color: #000000"> </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> </span><span style="color: #A31515">`</span><span style="color: #0000FF">${</span><span style="color: #001080">u</span><span style="color: #000000FF">.</span><span style="color: #001080">firstName</span><span style="color: #0000FF">}</span><span style="color: #A31515"> </span><span style="color: #0000FF">${</span><span style="color: #001080">u</span><span style="color: #000000FF">.</span><span style="color: #001080">lastName</span><span style="color: #0000FF">}</span><span style="color: #A31515">`</span><span style="color: #000000">);</span>
+
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">firstNameInput</span><span style="color: #000000"> = </span><span style="color: #001080">document</span><span style="color: #000000">.</span><span style="color: #795E26">getElementById</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;first-name&#039;</span><span style="color: #000000">);</span>
+<span style="color: #001080">firstNameInput</span><span style="color: #000000">.</span><span style="color: #001080">value</span><span style="color: #000000"> = </span><span style="color: #001080">user</span><span style="color: #000000">.</span><span style="color: #001080">value</span><span style="color: #000000">.</span><span style="color: #001080">firstName</span><span style="color: #000000">;</span>
+<span style="color: #001080">firstNameInput</span><span style="color: #000000">.</span><span style="color: #795E26">addEventListener</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;input&#039;</span><span style="color: #000000">, </span><span style="color: #001080">event</span><span style="color: #000000"> </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  </span><span style="color: #001080">user</span><span style="color: #000000">.</span><span style="color: #795E26">update</span><span style="color: #000000">(</span><span style="color: #001080">oldUser</span><span style="color: #000000"> </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> ({ ...</span><span style="color: #001080">oldUser</span><span style="color: #000000">, </span><span style="color: #001080">firstName:</span><span style="color: #000000"> </span><span style="color: #001080">event</span><span style="color: #000000">.</span><span style="color: #001080">target</span><span style="color: #000000">.</span><span style="color: #001080">value</span><span style="color: #000000"> }));</span>
+<span style="color: #000000">});</span>
+
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">lastNameInput</span><span style="color: #000000"> = </span><span style="color: #001080">document</span><span style="color: #000000">.</span><span style="color: #795E26">getElementById</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;last-name&#039;</span><span style="color: #000000">);</span>
+<span style="color: #001080">lastNameInput</span><span style="color: #000000">.</span><span style="color: #001080">value</span><span style="color: #000000"> = </span><span style="color: #001080">user</span><span style="color: #000000">.</span><span style="color: #001080">value</span><span style="color: #000000">.</span><span style="color: #001080">lastName</span><span style="color: #000000">;</span>
+<span style="color: #001080">lastNameInput</span><span style="color: #000000">.</span><span style="color: #795E26">addEventListener</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;input&#039;</span><span style="color: #000000">, </span><span style="color: #001080">event</span><span style="color: #000000"> </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  </span><span style="color: #001080">user</span><span style="color: #000000">.</span><span style="color: #795E26">update</span><span style="color: #000000">(</span><span style="color: #001080">oldUser</span><span style="color: #000000"> </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> ({ ...</span><span style="color: #001080">oldUser</span><span style="color: #000000">, </span><span style="color: #001080">lastName:</span><span style="color: #000000"> </span><span style="color: #001080">event</span><span style="color: #000000">.</span><span style="color: #001080">target</span><span style="color: #000000">.</span><span style="color: #001080">value</span><span style="color: #000000"> }));</span>
+<span style="color: #000000">});</span>
+
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">fullNameDisplay</span><span style="color: #000000"> = </span><span style="color: #001080">document</span><span style="color: #000000">.</span><span style="color: #795E26">getElementById</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;display-full-name&#039;</span><span style="color: #000000">);</span>
+<span style="color: #001080">fullNameDisplay</span><span style="color: #000000">.</span><span style="color: #001080">textContent</span><span style="color: #000000"> = </span><span style="color: #001080">fullName</span><span style="color: #000000">.</span><span style="color: #001080">value</span><span style="color: #000000">;</span>
+<span style="color: #001080">fullName</span><span style="color: #000000">.</span><span style="color: #795E26">subscribe</span><span style="color: #000000">(</span><span style="color: #001080">name</span><span style="color: #000000"> </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  </span><span style="color: #001080">fullNameDisplay</span><span style="color: #000000">.</span><span style="color: #001080">textContent</span><span style="color: #000000"> = </span><span style="color: #001080">name</span><span style="color: #000000">.</span><span style="color: #001080">value</span><span style="color: #000000">;</span>
+<span style="color: #000000">});</span>
+</code></pre>
+					<p>A simple and clean way to control how data is rendered, just modify <code>fullName</code>&#39;s
+						projection function to, say, change the computed value to <code>last, first</code>
+					instead.</p>
 					<dl class="tsd-comment-tags">
 						<dt>internal</dt>
-						<dd><p><strong>DO NOT USE</strong> Prefer using the <code>projector</code> function to create new
-							projectors.</p>
+						<dd><p><strong>DO NOT USE</strong> Prefer using the <a href="../modules.html#projector">projector</a> factory function to
+							manually creating instances of this class.</p>
 						</dd>
 					</dl>
 				</div>
@@ -164,16 +237,27 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-has-type-parameter tsd-is-overwrite">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Projector&lt;T&gt;<span class="tsd-signature-symbol">(</span>atoms<span class="tsd-signature-symbol">: </span><a href="../interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span>, projection<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ProjectionFunction</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="projector.html" class="tsd-signature-type" data-tsd-kind="Class">Projector</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Projector&lt;T&gt;<span class="tsd-signature-symbol">(</span>atoms<span class="tsd-signature-symbol">: </span><a href="../interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span>, projection<span class="tsd-signature-symbol">: </span><a href="../interfaces/projectionfunction.html" class="tsd-signature-type" data-tsd-kind="Interface">ProjectionFunction</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="projector.html" class="tsd-signature-type" data-tsd-kind="Class">Projector</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Overrides <a href="baseatom.html">BaseAtom</a>.<a href="baseatom.html#constructor">constructor</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/e5fd0a0/src/Projector.ts#L31">Projector.ts:31</a></li>
+									<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/4985292/src/Projector.ts#L145">Projector.ts:145</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Construct and set up a new Projector. This first calls the BaseAtom
+										constructor with the initial projected value by grabbing the current value
+										of all atoms passed in and the calling the projection function. This
+										ensures the Projector always has a value. Then it initializes all the
+										instance variables and splits all the atoms passed in into regular and
+										readonly atoms before finally subscribing to all the atoms (excluding
+									readonly atoms).</p>
+								</div>
+							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
 								<li>
@@ -184,9 +268,20 @@
 							<ul class="tsd-parameters">
 								<li>
 									<h5>atoms: <a href="../interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The list of input atoms that the projector will subscribe to
+											and whose values will be projected with the help fo the projection
+										function.</p>
+									</div>
 								</li>
 								<li>
-									<h5>projection: <span class="tsd-signature-type">ProjectionFunction</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>projection: <a href="../interfaces/projectionfunction.html" class="tsd-signature-type" data-tsd-kind="Interface">ProjectionFunction</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The projection function receives, as arguments, the values
+											of the set of atoms passed in and returns a new value for the projector
+											based on the atom&#39;s input values. These should be treated as readonly as
+										the projection function should not modify the input values at all.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="projector.html" class="tsd-signature-type" data-tsd-kind="Class">Projector</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -202,19 +297,33 @@
 					<div class="tsd-signature tsd-kind-icon">#all<wbr>Atoms<span class="tsd-signature-symbol">:</span> <a href="../interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/e5fd0a0/src/Projector.ts#L28">Projector.ts:28</a></li>
+							<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/4985292/src/Projector.ts#L124">Projector.ts:124</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>This maintains the list of all atoms that the projector projects. These
+								will be iterated and mapped to their values before being passed to the
+							projection function.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
 					<a name="_projection" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagPrivate">Private</span> #projection</h3>
-					<div class="tsd-signature tsd-kind-icon">#projection<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ProjectionFunction</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<div class="tsd-signature tsd-kind-icon">#projection<span class="tsd-signature-symbol">:</span> <a href="../interfaces/projectionfunction.html" class="tsd-signature-type" data-tsd-kind="Interface">ProjectionFunction</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/e5fd0a0/src/Projector.ts#L27">Projector.ts:27</a></li>
+							<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/4985292/src/Projector.ts#L117">Projector.ts:117</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The projection function is a function that will be executed with the values
+								of the provided atoms and is expected to return the new value of the
+							projector.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
 					<a name="_readonlyatoms" class="tsd-anchor"></a>
@@ -222,9 +331,15 @@
 					<div class="tsd-signature tsd-kind-icon">#readonly<wbr>Atoms<span class="tsd-signature-symbol">:</span> <a href="readonlyatom.html" class="tsd-signature-type" data-tsd-kind="Class">ReadonlyAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/e5fd0a0/src/Projector.ts#L30">Projector.ts:30</a></li>
+							<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/4985292/src/Projector.ts#L136">Projector.ts:136</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>This is the list of readonly atoms that will only be subscribed to when
+							the projector has subscribers.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
 					<a name="_regularatoms" class="tsd-anchor"></a>
@@ -232,9 +347,15 @@
 					<div class="tsd-signature tsd-kind-icon">#regular<wbr>Atoms<span class="tsd-signature-symbol">:</span> <a href="../interfaces/iatom.html" class="tsd-signature-type" data-tsd-kind="Interface">IAtom</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/e5fd0a0/src/Projector.ts#L29">Projector.ts:29</a></li>
+							<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/4985292/src/Projector.ts#L130">Projector.ts:130</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>This list contains all non-readonly atoms that will be subscribed to at
+							all times.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
 					<a name="_subscribedtoreadonlyatoms" class="tsd-anchor"></a>
@@ -242,9 +363,18 @@
 					<div class="tsd-signature tsd-kind-icon">#subscribed<wbr>ToReadonly<wbr>Atoms<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/e5fd0a0/src/Projector.ts#L31">Projector.ts:31</a></li>
+							<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/4985292/src/Projector.ts#L145">Projector.ts:145</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>This is a flag that denotes whether or not the projector is currently
+								subscribed to readonly atoms. This is used to prevents multiple
+								subscriptions to readonly atoms which would cause the readonly atoms to
+								continue running as if they has a subscriber when in reality it would be
+							a duplicate and no a valid subscriber.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-private">
 					<a name="_subscribers" class="tsd-anchor"></a>
@@ -253,7 +383,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="baseatom.html">BaseAtom</a>.<a href="baseatom.html#_subscribers">#subscribers</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/e5fd0a0/src/BaseAtom.ts#L32">BaseAtom.ts:32</a></li>
+							<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/4985292/src/BaseAtom.ts#L34">BaseAtom.ts:34</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -275,7 +405,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="baseatom.html">BaseAtom</a>.<a href="baseatom.html#_value">#value</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/e5fd0a0/src/BaseAtom.ts#L25">BaseAtom.ts:25</a></li>
+							<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/4985292/src/BaseAtom.ts#L27">BaseAtom.ts:27</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -303,7 +433,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/e5fd0a0/src/BaseAtom.ts#L43">BaseAtom.ts:43</a></li>
+									<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/4985292/src/BaseAtom.ts#L50">BaseAtom.ts:50</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -330,7 +460,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="baseatom.html">BaseAtom</a>.<a href="baseatom.html#hassubscribers">hasSubscribers</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/e5fd0a0/src/BaseAtom.ts#L83">BaseAtom.ts:83</a></li>
+									<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/4985292/src/BaseAtom.ts#L90">BaseAtom.ts:90</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -356,7 +486,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="baseatom.html">BaseAtom</a>.<a href="baseatom.html#notifysubscribers">notifySubscribers</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/e5fd0a0/src/BaseAtom.ts#L91">BaseAtom.ts:91</a></li>
+									<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/4985292/src/BaseAtom.ts#L98">BaseAtom.ts:98</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -380,7 +510,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="baseatom.html">BaseAtom</a>.<a href="baseatom.html#setvalue">setValue</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/e5fd0a0/src/BaseAtom.ts#L101">BaseAtom.ts:101</a></li>
+									<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/4985292/src/BaseAtom.ts#L108">BaseAtom.ts:108</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -414,13 +544,24 @@
 							<aside class="tsd-sources">
 								<p>Overrides <a href="baseatom.html">BaseAtom</a>.<a href="baseatom.html#subscribe">subscribe</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/e5fd0a0/src/Projector.ts#L69">Projector.ts:69</a></li>
+									<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/4985292/src/Projector.ts#L217">Projector.ts:217</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>This just triggers a subscription to readonly atoms (if it&#39;s the first
+										subscriber) when a subscriber subscribes otherwise this simply calls the
+									BaseAtom subscribe function.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>subscriber: <span class="tsd-signature-type">AtomSubscriber</span><span class="tsd-signature-symbol">&lt;</span><a href="projector.html" class="tsd-signature-type" data-tsd-kind="Class">Projector</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The subscriber function wishing to be called when the
+										projectors value changes.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -437,9 +578,15 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/e5fd0a0/src/Projector.ts#L59">Projector.ts:59</a></li>
+									<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/4985292/src/Projector.ts#L200">Projector.ts:200</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>This will subscribe to all regular atoms, and if there is at least one
+									subscriber then all readonly atoms as well.</p>
+								</div>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
@@ -454,9 +601,16 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/e5fd0a0/src/Projector.ts#L79">Projector.ts:79</a></li>
+									<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/4985292/src/Projector.ts#L239">Projector.ts:239</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Subscribe to readonly atoms if there are subscribers, and there are
+										readonly atoms and the projector is not already subscribed to readonly
+									atoms.</p>
+								</div>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
@@ -472,13 +626,24 @@
 							<aside class="tsd-sources">
 								<p>Overrides <a href="baseatom.html">BaseAtom</a>.<a href="baseatom.html#unsubscribe">unsubscribe</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/e5fd0a0/src/Projector.ts#L74">Projector.ts:74</a></li>
+									<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/4985292/src/Projector.ts#L229">Projector.ts:229</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>This just triggers unsubscription (if it&#39;s the last subscriber) when a
+										subscriber chooses to unsubscribe. Otherwise this simple calls BaseAtoms
+									unsubscribe function.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>subscriber: <span class="tsd-signature-type">AtomSubscriber</span><span class="tsd-signature-symbol">&lt;</span><a href="projector.html" class="tsd-signature-type" data-tsd-kind="Class">Projector</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The subscriber that no longer wishes to be called when
+										the projectors value changes.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -495,9 +660,16 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/e5fd0a0/src/Projector.ts#L53">Projector.ts:53</a></li>
+									<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/4985292/src/Projector.ts#L188">Projector.ts:188</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>This will unsubscribe from every atom passed in, including readonly atoms.
+										It is intended to be used internally and/or before a projector whose input
+									atoms outlive it fall out of scope to prevent memory leaks.</p>
+								</div>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
@@ -512,9 +684,14 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/e5fd0a0/src/Projector.ts#L89">Projector.ts:89</a></li>
+									<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/4985292/src/Projector.ts#L252">Projector.ts:252</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Unsubscribe from readonly atoms only if we&#39;re subscribed to readonly atoms.</p>
+								</div>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
@@ -529,9 +706,17 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/e5fd0a0/src/Projector.ts#L101">Projector.ts:101</a></li>
+									<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/4985292/src/Projector.ts#L270">Projector.ts:270</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>This function is passed, as subscriber, to all atoms passed to the projector
+										and simply maps the current atom values and passes them to the projection
+										function to generate a new value. This new value is the set as the projectors
+									new value and then all of the projectors subscribers are notified.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -554,6 +739,9 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+					<li class=" tsd-kind-class tsd-has-type-parameter">
+						<a href="atom.html" class="tsd-kind-icon">Atom</a>
+					</li>
 					<li class=" tsd-kind-class tsd-has-type-parameter">
 						<a href="baseatom.html" class="tsd-kind-icon">Base<wbr>Atom</a>
 					</li>
@@ -632,6 +820,9 @@
 					<li class=" tsd-kind-interface tsd-has-type-parameter">
 						<a href="../interfaces/iatom.html" class="tsd-kind-icon">IAtom</a>
 					</li>
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
+						<a href="../interfaces/projectionfunction.html" class="tsd-kind-icon">Projection<wbr>Function</a>
+					</li>
 					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
 						<a href="../modules.html#atomupdater" class="tsd-kind-icon">Atom<wbr>Updater</a>
 					</li>
@@ -668,6 +859,9 @@
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected method</span></li>

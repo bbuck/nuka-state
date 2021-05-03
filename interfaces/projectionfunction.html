@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>AtomUpdateFunction | @nuka/state</title>
+	<title>ProjectionFunction | @nuka/state</title>
 	<meta name="description" content="Documentation for @nuka/state">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -55,10 +55,10 @@
 					<a href="../modules.html">@nuka/state</a>
 				</li>
 				<li>
-					<a href="atomupdatefunction.html">AtomUpdateFunction</a>
+					<a href="projectionfunction.html">ProjectionFunction</a>
 				</li>
 			</ul>
-			<h1>Interface AtomUpdateFunction&lt;T&gt;</h1>
+			<h1>Interface ProjectionFunction&lt;T&gt;</h1>
 		</div>
 	</div>
 </header>
@@ -68,10 +68,14 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>A function that will update the value of an atom. It receives the atom&#39;s
-							current value as its argument and is expected to return the atom&#39;s next value
-						as the return value.</p>
+						<p>A projection function is a function that takes a set of atom values and
+						returns a new value for the projector.</p>
 					</div>
+					<dl class="tsd-comment-tags">
+						<dt>typeparam</dt>
+						<dd><p>type of the projectors&#39;s value.</p>
+						</dd>
+					</dl>
 				</div>
 			</section>
 			<section class="tsd-panel tsd-type-parameters">
@@ -79,11 +83,6 @@
 				<ul class="tsd-type-parameters">
 					<li>
 						<h4>T</h4>
-						<div class="tsd-comment tsd-typography">
-							<div class="lead">
-								<p>The type of the atom&#39;s value.</p>
-							</div>
-						</div>
 					</li>
 				</ul>
 			</section>
@@ -91,33 +90,32 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">AtomUpdateFunction</span>
+						<span class="target">ProjectionFunction</span>
 					</li>
 				</ul>
 			</section>
 			<section class="tsd-panel">
 				<h3 class="tsd-before-signature">Callable</h3>
 				<ul class="tsd-signatures tsd-kind-interface tsd-has-type-parameter">
-					<li class="tsd-signature tsd-kind-icon">Atom<wbr>Update<wbr>Function<span class="tsd-signature-symbol">(</span>arg<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span></li>
+					<li class="tsd-signature tsd-kind-icon">Projection<wbr>Function<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/4985292/src/Atom.ts#L9">Atom.ts:9</a></li>
+								<li>Defined in <a href="https://github.com/bbuck/nuka-state/blob/4985292/src/Projector.ts#L11">Projector.ts:11</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
 							<div class="lead">
-								<p>A function that will update the value of an atom. It receives the atom&#39;s
-									current value as its argument and is expected to return the atom&#39;s next value
-								as the return value.</p>
+								<p>A projection function is a function that takes a set of atom values and
+								returns a new value for the projector.</p>
 							</div>
 						</div>
 						<h4 class="tsd-parameters-title">Parameters</h4>
 						<ul class="tsd-parameters">
 							<li>
-								<h5>arg: <span class="tsd-signature-type">T</span></h5>
+								<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>args: <span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">[]</span></h5>
 							</li>
 						</ul>
 						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span></h4>
@@ -147,19 +145,19 @@
 					<li class=" tsd-kind-class tsd-has-type-parameter">
 						<a href="../classes/readonlyatom.html" class="tsd-kind-icon">Readonly<wbr>Atom</a>
 					</li>
-				</ul>
-				<ul class="current">
-					<li class="current tsd-kind-interface tsd-has-type-parameter">
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
 						<a href="atomupdatefunction.html" class="tsd-kind-icon">Atom<wbr>Update<wbr>Function</a>
 					</li>
-				</ul>
-				<ul class="after-current">
 					<li class=" tsd-kind-interface tsd-has-type-parameter">
 						<a href="iatom.html" class="tsd-kind-icon">IAtom</a>
 					</li>
-					<li class=" tsd-kind-interface tsd-has-type-parameter">
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-interface tsd-has-type-parameter">
 						<a href="projectionfunction.html" class="tsd-kind-icon">Projection<wbr>Function</a>
 					</li>
+				</ul>
+				<ul class="after-current">
 					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
 						<a href="../modules.html#atomupdater" class="tsd-kind-icon">Atom<wbr>Updater</a>
 					</li>

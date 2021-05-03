@@ -11,6 +11,22 @@ describe('atom', () => {
 });
 
 describe('Atom', () => {
+	describe('looks like an atom (IAtom)', () => {
+		const test = atom(10);
+
+		it('has a value property', () => {
+			expect(test.value).toEqual(10);
+		});
+
+		it('has a subscribe function', () => {
+			expect(test.subscribe).toBeInstanceOf(Function);
+		});
+
+		it('has an unsubscribe function', () => {
+			expect(test.unsubscribe).toBeInstanceOf(Function);
+		});
+	});
+
 	describe('construction', () => {
 		it('does not blow up', () => {
 			expect(() => atom(10)).not.toThrow();

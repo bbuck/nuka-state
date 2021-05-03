@@ -13,8 +13,10 @@ export interface AtomSubscriber<T> {
  * value property and handling subscribers. These are the basic requirements
  * required to meet the [[IAtom]] interface.
  * @typeparam T The type of the atom's value.
- * @internal **DO NOT USE** This is a base class for other atoms, prefer
- *   [[readonlyAtom]] or [[atom]] or another constructor function.
+ * @internal **DO NOT INSTANTIATE** This is the abstract base class for all
+ *   atom-like objects. Either extend it to create your own atom-like objects or
+ *   use one of the factory functions to create a usable instance of an atom based
+ *   on your needs.
  */
 export default abstract class BaseAtom<T> {
 	/**
@@ -31,6 +33,11 @@ export default abstract class BaseAtom<T> {
 	 */
 	#subscribers: AtomSubscriber<this>[];
 
+	/**
+	 * Constructs a new BaseAtom, setting the initial value and initializing the
+	 * subscriber list to an empty array.
+	 * @param value The initial value of the BaseAtom.
+	 */
 	constructor(value: T) {
 		this.#value = value;
 		this.#subscribers = [];

@@ -43,6 +43,8 @@ export type AtomUpdater<T> = T | AtomUpdateFunction<T>;
  * ```
  *
  * @typeparam T The type of the atom's value.
+ * @internal **DO NOT USE** Prefer the [[atom]] factory function to manually
+ *   creating instances of this class.
  */
 export default class Atom<T> extends BaseAtom<T> {
 	/**

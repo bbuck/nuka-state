@@ -107,12 +107,35 @@ export type ReadonlyAtomStarter<T> = (set: ReadonlyAtomSetter<T>) => VoidFunctio
  * running, it's better to try and work in using the subscribe functions for the
  * lifetime you use the atom instead of having it constatly live.
  * @typeparam T The type of the atom's value.
- * @internal Prefer [[readonlyAtom]] to manually creating instances of
- *   this class.
+ * @internal **DO NOT USE** Prefer using the [[readonlyAtom]] factory function
+ *   to manually creating instances of this class.
  */
 export default class ReadonlyAtom<T> extends BaseAtom<T> {
+	/**
+	 * The start function of the readonly atom. This will be called when a subscriber
+	 * subscribes and should kick off any timeout/interval/fetch/etc... that will
+	 * update the subscriber. This value is optional though, so it may be undefined
+	 * in which case there is not start function to call.
+	 */
 	#start: ReadonlyAtomStarter<T> | undefined;
+
+	/**
+	 * When the readonly atom has a subscriber and start (if present) is called
+	 * then this is the return value of the start function. It is expected to
+	 * stop any updates that are currently pending (if possible) and will be
+	 * called when the last subscriber unsubscribes. This would tyipcally complement
+	 * whatever start does, say by `clearTimeout` or `clearInterval` or anything
+	 * else that was set up.
+	 */
 	#stop: VoidFunction | undefined;
+
+	/**
+	 * Live will determine if the readonly atom should continue running without
+	 * subscribers. By default readonly atoms are not live, but they can be
+	 * set live with `setLive` function. If they are set live than start will
+	 * be called and they will continue to run with or without subscribers until
+	 * they are marked as no longer live with a follow up call to `setLive`.
+	 */
 	#live: boolean;
 
 	static isReadonlyAtom(obj: unknown): obj is ReadonlyAtom<unknown> {

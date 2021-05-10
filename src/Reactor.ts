@@ -43,13 +43,14 @@ export default class Reactor<T, R extends ReactionMutationMapping<T>> extends Ba
 		this.#atom.unsubscribe(this.subscriber);
 	}
 
-	react(reactionName: keyof R, ...args: RestParameters<R[typeof reactionName]>): void {
+	react<Key extends keyof R>(...args: [reactionName: Key, ...args: RestParameters<R[Key]>]): void {
+		const [reactionName, rest] = args;
 		const reaction = this.#reactions[reactionName];
 
-		reaction(...args);
+		reaction(...rest);
 	}
 
-	extract(reactionName: keyof R): ReactionFunction<T, R[keyof R]> {
+	extract<Key extends keyof R>(reactionName: Key): ReactionFunction<T, R[Key]> {
 		return this.#reactions[reactionName];
 	}
 

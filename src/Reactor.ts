@@ -194,6 +194,25 @@ export default class Reactor<T, R extends ReactionMutationMapping<T>> extends Ba
 	}
 
 	/**
+	 * Similar to extract, this will extract reactions from the reactor as standalone
+	 * functions. The difference is this extracts multiple reactions and returns
+	 * a mapping of these reactions.
+	 * @param reactionNames The names of all the reactions to extract and store
+	 *   into the mapping.
+	 * @return A mapping where each key request points to an approparite reaction
+	 *   as passed to the reactor when it was created.
+	 * @typeparam Key The key defined in the reaction mapping.
+	 */
+	multiExtract<Key extends keyof R>(...reactionNames: Key[]): ReactionFunctionMapping<T, R> {
+		const mapping = {} as ReactionFunctionMapping<T, R>;
+		for (const key of reactionNames) {
+			mapping[key] = this.extract(key);
+		}
+
+		return mapping;
+	}
+
+	/**
 	 * This is a helper that wraps the mutation version of a reaction and returns
 	 * the usable version of the reaction that will be called by `react` or
 	 * returned by `extract`.

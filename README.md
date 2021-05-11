@@ -2,7 +2,34 @@
 
 ## Installation
 
-TODO: Publish to NPM and provide installation insructions
+Insteall using your preferred package manager.
+
+```
+$ npm install --P @nuka/state
+```
+
+```
+$ yarn add @nuka/state
+```
+
+```
+$ pnpm add @nuka/state
+```
+
+Once `@nuka/state` is installed you can use it by importing the atom tools that
+you want to use:
+
+```typescript
+import { atom, reactor, projector } from '@nuka/state';
+
+const count = atom(0);
+
+const counter = reactor(atom(0), {
+	increment: value => value + 1,
+});
+
+const binary = projector(count, value => value.toString(2));
+```
 
 ## Description
 
@@ -48,12 +75,12 @@ incrementButton.addEventListener('click', () => counter.update(n => n + 1));
 - [ ] more documentation
 - [ ] more tests
 - [ ] Product (a combination of several atoms into a single atom-like structure)
-- [ ] Reactor (a atom-like wrapper around atoms that provide named actions for
+- [x] Reactor (a atom-like wrapper around atoms that provide named actions for
       use.
-- [ ] Projector (an atom-like structure that takes one or more atoms and provides
+- [x] Projector (an atom-like structure that takes one or more atoms and provides
       a different value, such as taking two count atoms and providing their
       sum as it's value).
-- [ ] Publish to NPM
+- [x] Publish to NPM
 - [ ] (Sister project) React hook bindings allowing components to respond to
       atom updates.
 - [ ] (Sister project) DOM tools to simplify working with atoms and native DOM

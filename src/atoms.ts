@@ -668,6 +668,8 @@ export const projector: ProjectorCreator = <T>(...args: unknown[]): Projector<T>
  * incrementButton.addEventListener('click', incr);
  * ```
  *
+ * See it on [CodePen](https://codepen.io/bbuck/pen/OJpypKx).
+ *
  * @typeparam T The type of the wrapped atom's value.
  * @typeparam R The ReactionMutationMapping provided to the Reactor.
  * @internal **DO NOT USE** Prefer the [[reactor]] factory function to manually

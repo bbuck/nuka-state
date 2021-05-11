@@ -1,11 +1,21 @@
-import { atom } from './atoms';
+import { atom, reactor } from './atoms';
 import Reactor from './Reactor';
 import { delay } from './testHelpers';
+
+describe('reactor', () => {
+	it('creates a Reactor', () => {
+		const example = reactor(atom(0), {
+			increment: value => value + 1,
+		});
+
+		expect(example).toBeInstanceOf(Reactor);
+	});
+});
 
 describe('Reactor', () => {
 	const generateReactor = () => {
 		const counter = atom(0);
-		const counterReactor = new Reactor(counter, {
+		const counterReactor = reactor(counter, {
 			increment: (value: number, incr = 1) => value + incr,
 			decrement: (value: number, decr = 1) => value - decr,
 		});

@@ -47,7 +47,7 @@ export default abstract class BaseAtom<T> {
 	 * This readonly property will return the current active value of the atom.
 	 * @returns The current value of the atom.
 	 */
-	get value(): T {
+	get value(): Readonly<T> {
 		return this.#value;
 	}
 
@@ -79,6 +79,20 @@ export default abstract class BaseAtom<T> {
 		}
 
 		this.#subscribers = this.#subscribers.filter(sub => sub !== subscriber);
+	}
+
+	/**
+	 * Since the value getter returns a Readonly value there is a need for possible
+	 * mutable atoms, namely [[Atom]], to access the current value without the
+	 * Readonly type wrapper allowing it to be modified. It's generally considered
+	 * unsafe to mutate an object/array/class value outside of an update but
+	 * inside an update it should be safe to mutate the value and so the Readonly
+	 * wrapper is not required.
+	 * @return The value of the atom without a Readonly type wrapper allowing it
+	 *   to be mutated.
+	 */
+	protected getMutableValue(): T {
+		return this.#value;
 	}
 
 	/**

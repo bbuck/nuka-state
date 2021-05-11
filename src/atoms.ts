@@ -1,7 +1,8 @@
 import ReadonlyAtom, { ReadonlyAtomStarter } from './ReadonlyAtom';
 import Atom from './Atom';
-import { IAtom } from './types';
+import { IAtom, IMutableAtom } from './types';
 import Projector, { ProjectionFunction } from './Projector';
+import Reactor, { ReactionMutationMapping } from './Reactor';
 
 /**
  * readonlyAtom will create a new ReadonlyAtom instance with the provided
@@ -639,4 +640,42 @@ export const projector: ProjectorCreator = <T>(...args: unknown[]): Projector<T>
 	});
 
 	return new Projector(atoms, projection);
+};
+
+/**
+ * A Reactor is a specialized [[Atom]] wrapper that behaves similar to an atom but
+ * provides pre-defined and pre-bound functions for interacting with a an atom.
+ * This is useful if you have an atom and you wish to provide a specialized
+ * interface on top of `update` that allows a client to react to the event or
+ * extract them for later use.
+ *
+ * ### Example
+ *
+ * For example, here is the Atom counter example redefined to use the reactor.
+ *
+ * ```typescript
+ * const counter = reactor(atom(0), {
+ *   increment: value => value + 1,
+ * });
+ *
+ * const countDisplay = document.querySelector('#count-display');
+ * counter.subscribe(atom => {
+ *   countDisplay.textContent = `Current count: ${atom.value}`;
+ * });
+ *
+ * const incrementButton = document.querySelector('#increment-button');
+ * const incr = counter.extract('increment');
+ * incrementButton.addEventListener('click', incr);
+ * ```
+ *
+ * @typeparam T The type of the wrapped atom's value.
+ * @typeparam R The ReactionMutationMapping provided to the Reactor.
+ * @internal **DO NOT USE** Prefer the [[reactor]] factory function to manually
+ *   creating instances of this class.
+ */
+export const reactor = <T, R extends ReactionMutationMapping<T>>(
+	atom: IMutableAtom<T>,
+	reactions: R,
+): Reactor<T, R> => {
+	return new Reactor(atom, reactions);
 };

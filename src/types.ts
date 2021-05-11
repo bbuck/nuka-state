@@ -23,5 +23,12 @@ export interface IMutableAtom<T> extends IAtom<T> {
 	update(updater: AtomUpdater<T>): void;
 }
 
+/**
+ * RestParameters is a special type that extracts all but the first parameter
+ * types from the function type provided. If the type isn't a function then
+ * the type returned is `never`.
+ * @typeparam F The function type for which all but the first parameters should
+ *   be extracted from.
+ */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type RestParameters<F> = F extends (x: any, ...args: infer P) => any ? P : never;

@@ -31,6 +31,8 @@ const counter = reactor(atom(0), {
 const binary = projector(count, value => value.toString(2));
 ```
 
+[Try it out on CodePen!](https://codepen.io/bbuck/pen/BaWzzMv)
+
 ## Description
 
 `@nuka/state` is an application state-management library that focus on small
@@ -75,6 +77,8 @@ incrementButton.addEventListener('click', () => counter.update(n => n + 1));
 - [ ] more documentation
 - [ ] more tests
 - [ ] Product (a combination of several atoms into a single atom-like structure)
+  - [ ] array Product
+  - [ ] object Product
 - [x] Reactor (a atom-like wrapper around atoms that provide named actions for
       use.
 - [x] Projector (an atom-like structure that takes one or more atoms and provides

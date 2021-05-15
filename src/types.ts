@@ -24,6 +24,13 @@ export interface IMutableAtom<T> extends IAtom<T> {
 }
 
 /**
+ * Extract the value of the IAtom type provided. This allows breaking an IAtom
+ * down to it's component parts, used for typings that require such a thing.
+ * @typeparams T The IAtom to extract the value type from.
+ */
+export type AtomValueType<T> = T extends IAtom<infer A> ? A : never;
+
+/**
  * RestParameters is a special type that extracts all but the first parameter
  * types from the function type provided. If the type isn't a function then
  * the type returned is `never`.

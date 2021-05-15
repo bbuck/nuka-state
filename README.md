@@ -5,7 +5,7 @@
 Insteall using your preferred package manager.
 
 ```
-$ npm install --P @nuka/state
+$ npm install -P @nuka/state
 ```
 
 ```

@@ -1,5 +1,4 @@
-import BaseAtom, { AtomSubscriber } from './BaseAtom';
-import ReadonlyAtom from './ReadonlyAtom';
+import BaseAtom from './BaseAtom';
 import { IAtom } from './types';
 
 // TODO: Find a better type
@@ -22,10 +21,13 @@ export interface ProjectionFunction<T> {
  * Projectors act like atoms, so they can be consumed by other projectors or
  * other atom-consuming API functions.
  *
- * There is a slight optimization that Projector will do, it will try and sniff
- * if any input atom-like objects are a ReadonlyAtom, and if so it will only
- * subscribe to them if there are subscribers to the Projector so that the
- * readonly atom isn't running when nothings is subscribed.
+ * Since ReadonlyAtom's do not start until they are either live or have at least
+ * on subscriber, if you pass a ReadonlyAtom to a Projector the projector will
+ * automatically subscribe to the readonly atom therefore having it run. So be
+ * mindful that any ReadonlyAtom's given to a projector will remain active. If
+ * you want to "turn off" ReadonlyAtoms ensure that you call
+ * `unsubscribeFromAtoms` and of course resubscribe by calling
+ * `subscribeToAtoms` when you wish to resume using a projector.
  *
  * #### NOTE
  *
@@ -108,7 +110,7 @@ export interface ProjectionFunction<T> {
  * @internal **DO NOT USE** Prefer using the [[projector]] factory function to
  *   manually creating instances of this class.
  */
-export default class Projector<T> extends BaseAtom<T> {
+export default class Projector<T> extends BaseAtom<T | undefined> {
 	/**
 	 * The projection function is a function that will be executed with the values
 	 * of the provided atoms and is expected to return the new value of the
@@ -124,25 +126,12 @@ export default class Projector<T> extends BaseAtom<T> {
 	#allAtoms: IAtom<unknown>[];
 
 	/**
-	 * This list contains all non-readonly atoms that will be subscribed to at
-	 * all times.
+	 * This allows the projector to track if it's currently subscribed to it's
+	 * atoms or not, this prevents multiple subscriptions which could cause
+	 * memory leaks or unexpected behaviors (like keeping readonly atoms active
+	 * when they shouldn't be.
 	 */
-	#regularAtoms: IAtom<unknown>[];
-
-	/**
-	 * This is the list of readonly atoms that will only be subscribed to when
-	 * the projector has subscribers.
-	 */
-	#readonlyAtoms: ReadonlyAtom<unknown>[];
-
-	/**
-	 * This is a flag that denotes whether or not the projector is currently
-	 * subscribed to readonly atoms. This is used to prevents multiple
-	 * subscriptions to readonly atoms which would cause the readonly atoms to
-	 * continue running as if they has a subscriber when in reality it would be
-	 * a duplicate and no a valid subscriber.
-	 */
-	#subscribedToReadonlyAtoms: boolean;
+	#subscribed: boolean;
 
 	/**
 	 * Construct and set up a new Projector. This first calls the BaseAtom
@@ -161,23 +150,28 @@ export default class Projector<T> extends BaseAtom<T> {
 	 *   the projection function should not modify the input values at all.
 	 */
 	constructor(atoms: IAtom<unknown>[], projection: ProjectionFunction<T>) {
-		super(projection(...atoms.map(atom => atom.value)));
+		super(undefined);
 
 		this.#projection = projection;
 		this.#allAtoms = atoms;
-		this.#regularAtoms = [];
-		this.#readonlyAtoms = [];
-		this.#subscribedToReadonlyAtoms = false;
-
-		this.#allAtoms.forEach(atom => {
-			if (ReadonlyAtom.isReadonlyAtom(atom)) {
-				this.#readonlyAtoms.push(atom);
-			} else {
-				this.#regularAtoms.push(atom);
-			}
-		});
+		this.#subscribed = false;
 
 		this.subscribeToAtoms();
+	}
+
+	/**
+	 * Project overrides the value getter because it computes the current value
+	 * lazily in case the projection function does something expensive.
+	 */
+	get value(): T {
+		let currentValue = super.value;
+		if (currentValue === undefined) {
+			const args = this.#allAtoms.map(atom => atom.value);
+			currentValue = this.#projection(...args);
+			this.setValue(currentValue);
+		}
+
+		return currentValue;
 	}
 
 	/**
@@ -186,11 +180,15 @@ export default class Projector<T> extends BaseAtom<T> {
 	 * atoms outlive it fall out of scope to prevent memory leaks.
 	 */
 	unsubscribeFromAtoms(): void {
+		if (!this.#subscribed) {
+			return;
+		}
+
 		this.#allAtoms.forEach(atom => {
 			atom.unsubscribe(this.update);
 		});
 
-		this.#subscribedToReadonlyAtoms = false;
+		this.#subscribed = false;
 	}
 
 	/**
@@ -198,67 +196,15 @@ export default class Projector<T> extends BaseAtom<T> {
 	 * subscriber then all readonly atoms as well.
 	 */
 	subscribeToAtoms(): void {
-		this.unsubscribeFromAtoms();
-
-		this.#regularAtoms.forEach(atom => {
-			atom.subscribe(this.update);
-		});
-
-		this.subscribeToReadonlyAtoms();
-	}
-
-	/**
-	 * This just triggers a subscription to readonly atoms (if it's the first
-	 * subscriber) when a subscriber subscribes otherwise this simply calls the
-	 * BaseAtom subscribe function.
-	 * @param subscriber The subscriber function wishing to be called when the
-	 *   projectors value changes.
-	 */
-	subscribe(subscriber: AtomSubscriber<this>): void {
-		super.subscribe(subscriber);
-		this.subscribeToReadonlyAtoms();
-	}
-
-	/**
-	 * This just triggers unsubscription (if it's the last subscriber) when a
-	 * subscriber chooses to unsubscribe. Otherwise this simple calls BaseAtoms
-	 * unsubscribe function.
-	 * @param subscriber The subscriber that no longer wishes to be called when
-	 *   the projectors value changes.
-	 */
-	unsubscribe(subscriber: AtomSubscriber<this>): void {
-		super.unsubscribe(subscriber);
-		this.unsubscribeFromReadonlyAtoms();
-	}
-
-	/**
-	 * Subscribe to readonly atoms if there are subscribers, and there are
-	 * readonly atoms and the projector is not already subscribed to readonly
-	 * atoms.
-	 */
-	private subscribeToReadonlyAtoms() {
-		if (this.#readonlyAtoms.length > 0 && this.hasSubscribers() && !this.#subscribedToReadonlyAtoms) {
-			this.#subscribedToReadonlyAtoms = true;
-
-			this.#readonlyAtoms.forEach(atom => {
-				atom.subscribe(this.update);
-			});
-		}
-	}
-
-	/**
-	 * Unsubscribe from readonly atoms only if we're subscribed to readonly atoms.
-	 */
-	private unsubscribeFromReadonlyAtoms(): void {
-		if (!this.#subscribedToReadonlyAtoms) {
+		if (this.#subscribed) {
 			return;
 		}
 
-		this.#readonlyAtoms.forEach(atom => {
-			atom.unsubscribe(this.update);
+		this.#allAtoms.forEach(atom => {
+			atom.subscribe(this.update);
 		});
 
-		this.#subscribedToReadonlyAtoms = false;
+		this.#subscribed = true;
 	}
 
 	/**
@@ -268,10 +214,7 @@ export default class Projector<T> extends BaseAtom<T> {
 	 * new value and then all of the projectors subscribers are notified.
 	 */
 	private update = (_atom: IAtom<unknown>): void => {
-		const args = this.#allAtoms.map(atom => atom.value);
-		const newValue = this.#projection(...args);
-
-		this.setValue(newValue);
+		this.setValue(undefined);
 		this.notifySubscribers();
 	};
 }

@@ -50,7 +50,7 @@ describe('Projector', () => {
 			expect(countSum.value).toEqual(26);
 		});
 
-		it('does not listen to readonlyAtom changes without subscribers', async () => {
+		it('listens to readonlyAtom changes without subscribers', async () => {
 			const testAtom = readonlyAtom(10, set => {
 				const interval = setInterval(() => {
 					set(testAtom.value + 10);
@@ -60,33 +60,13 @@ describe('Projector', () => {
 			});
 
 			const test = projector(testAtom, n => n);
-
-			testAtom.setLive(true);
-			await delay(50);
-			testAtom.setLive(false);
 			expect(test.value).toEqual(10);
-		});
-
-		it('updates when readonlyAtom changes when it has subscribers', async () => {
-			const testAtom = readonlyAtom(10, set => {
-				const interval = setInterval(() => {
-					set(testAtom.value + 10);
-				}, 40);
-
-				return () => clearInterval(interval);
-			});
-
-			const test = projector(testAtom, n => n);
-
-			testAtom.setLive(true);
-			test.subscribe(noOp);
-			await delay(50);
-			testAtom.setLive(false);
-			test.unsubscribe(noOp);
+			await delay(15);
+			test.unsubscribeFromAtoms();
 			expect(test.value).toEqual(20);
 		});
 
-		it('stop updating when readonlyAtom changes when it loses subscribers', async () => {
+		it('continues updating when readonlyAtom loses subscribers', async () => {
 			const testAtom = readonlyAtom(10, set => {
 				const interval = setInterval(() => {
 					set(testAtom.value + 10);
@@ -96,23 +76,19 @@ describe('Projector', () => {
 			});
 
 			const test = projector(testAtom, n => n);
-
-			testAtom.setLive(true);
 			test.subscribe(noOp);
 			await delay(50);
 			test.unsubscribe(noOp);
 			await delay(40);
-			testAtom.setLive(false);
-			expect(test.value).toEqual(20);
+			test.unsubscribeFromAtoms();
+			expect(test.value).toEqual(30);
 		});
 	});
 
 	describe('.subscribe', () => {
 		it('allows clients to subscribe', () => {
 			const count = atom(0);
-
 			const test = projector(count, n => n);
-
 			expect(() => test.subscribe(noOp)).not.toThrow();
 		});
 
@@ -137,7 +113,6 @@ describe('Projector', () => {
 	describe('.unsubscribe', () => {
 		it('allows clients to unsubscribe', () => {
 			const count = atom(0);
-
 			const test = projector(count, n => n);
 
 			expect(() => test.unsubscribe(noOp)).not.toThrow();
@@ -157,6 +132,26 @@ describe('Projector', () => {
 			count.set(10);
 			await delay(10);
 			expect(test.value).toEqual(11);
+		});
+	});
+
+	describe('get .value', () => {
+		it('only projects when the value property is accessed', async () => {
+			const count = atom(0);
+			let valueProjected = 0;
+			const proj = projector(count, n => {
+				valueProjected += 1;
+
+				return n;
+			});
+
+			expect(proj.value).toEqual(0);
+			expect(valueProjected).toEqual(1);
+			count.update(n => n + 1);
+			count.update(n => n + 1);
+			await delay(10);
+			expect(proj.value).toEqual(2);
+			expect(valueProjected).toEqual(2);
 		});
 	});
 });
